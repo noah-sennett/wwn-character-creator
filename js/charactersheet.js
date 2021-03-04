@@ -3,7 +3,7 @@
 $(document).ready(function () {
     
     $("#printButton").click(function(){
-	fillOutCharacterSheet();
+	//fillOutCharacterSheet();
     });
 
     $("#shareButton").click(function(){
@@ -484,8 +484,164 @@ $(document).ready(function () {
 
     loadJSON();
 
+    var advancementHidden = true;
+    
+    $("#expandCollapseTableButton").click(function(){
+	if(advancementHidden){
+	    $('#advancementTablePane').animate({
+		width: 450,
+		height: 265,
+		padding: 5
+	    });
+	    $('#advancementTablePane').css("border","1px solid black");
+	    $('#advancementTable').show();
+	    $('#expandCollapseTableButton').html('<i class="fas fa-caret-up"></i> Advancement Table');
+	}
+	else{
+	    $('#advancementTablePane').animate({
+		width: 0,
+		height: 0,
+		padding: 0
+	    });
+	    $('#advancementTablePane').css("border","0px");
+	    $('#advancementTable').hide();
+	    $('#expandCollapseTableButton').html('<i class="fas fa-caret-down"></i> Advancement Table');
+	}
+	advancementHidden = !advancementHidden;
+    });
+
+    $("#expandCollapseSpellcastingTableButton").click(function(){
+	if(spellcastingHidden){
+	    openTraditionsPane();
+	    openSpellcastingPane();
+	    closeUnarmedPane();
+	    closeArtsPane();
+	}
+	else{
+	    closeTraditionsPane();
+	    closeSpellcastingPane();
+	}
+    });
+    
+    $("#expandCollapseUnarmedTableButton").click(function(){
+	if(unarmedHidden){
+	    openTraditionsPane();
+	    openUnarmedPane();
+	    closeSpellcastingPane();
+	    closeArtsPane();
+	}
+	else{
+	    closeTraditionsPane();
+	    closeUnarmedPane();
+	}
+    });
+
+    $("#expandCollapseArtsTableButton").click(function(){
+	if(artsHidden){
+	    openTraditionsPane();
+	    openArtsPane();
+	    closeUnarmedPane();
+	    closeSpellcastingPane();
+	}
+	else{
+	    closeTraditionsPane();
+	    closeArtsPane();
+	}
+    });
+    
+    $('#traditionsPanel').hide();
     
 });
+
+var spellcastingHidden = true;
+var artsHidden = true;
+var unarmedHidden = true;
+var traditionsPaneHidden = true;
+
+function openTraditionsPane(){
+    $('#traditionsExpandCollapsePane').animate({
+	width: 460,
+	height: 310
+    });
+    traditionsPaneHidden = false;
+}
+
+function closeTraditionsPane(){
+    $('#traditionsExpandCollapsePane').animate({
+	width: 0,
+	height: 0
+    });
+    traditionsPaneHidden = true;
+}
+
+
+function openSpellcastingPane(){
+    $('#spellcastingTablePane').animate({
+	width: 450,
+	height: 300,
+	padding: 5
+    });
+    spellcastingHidden = false;
+    $('#spellcastingTable').show();
+    $('#expandCollapseSpellcastingTableButton').html('<i class="fas fa-caret-up"></i> Spellcasting Table');
+
+}
+
+function closeSpellcastingPane(){
+    $('#spellcastingTablePane').animate({
+	width: 0,
+	height: 0,
+	padding: 0
+    });
+    spellcastingHidden = true;
+    $('#spellcastingTable').hide();
+    $('#expandCollapseSpellcastingTableButton').html('<i class="fas fa-caret-down"></i> Spellcasting Table');
+}
+
+function openArtsPane(){
+    $('#artsTablePane').animate({
+	width: 450,
+	height: 300,
+	padding: 5
+    });
+    artsHidden = false;
+    $('#artsTable').show();
+    $('#expandCollapseArtsTableButton').html('<i class="fas fa-caret-up"></i> Arts Table');
+}
+
+function closeArtsPane(){
+    $('#artsTablePane').animate({
+	width: 0,
+	height: 0,
+	padding: 0
+    });
+    artsHidden = true;	    
+    $('#artsTable').hide();
+    $('#expandCollapseArtsTableButton').html('<i class="fas fa-caret-down"></i> Arts Table');
+}
+
+function openUnarmedPane(){
+    $('#unarmedTablePane').animate({
+	width: 450,
+	height: 300,
+	padding: 5
+    });
+    unarmedHidden = false;
+    $('#unarmedTable').show();
+    $('#expandCollapseUnarmedTableButton').html('<i class="fas fa-caret-up"></i> Unarmed Table');
+}
+
+function closeUnarmedPane(){
+    $('#unarmedTablePane').animate({
+	width: 0,
+	height: 0,
+	padding: 0
+    });
+    unarmedHidden = true;
+    $('#unarmedTable').hide();
+    $('#expandCollapseUnarmedTableButton').html('<i class="fas fa-caret-down"></i> Unarmed Table');
+}
+
 
 const attrs = ["strength","dexterity","constitution","intelligence","wisdom","charisma"];
 
@@ -501,12 +657,10 @@ var remainingRolls=3;
 
 var combat_skill_bank = 0;
 var noncombat_skill_bank = 0;
-var psychic_skill_bank = 0;
 var any_skill_bank = 1;
 
 var combat_skill_remaining = 0;
 var noncombat_skill_remaining = 0;
-var psychic_skill_remaining = 0;
 var any_skill_remaining = 1;
 
 var background_skills = [];
@@ -524,6 +678,7 @@ var picked_skills = [];
 var picked_foci = [];
 
 var learning_choice_index = [];
+var tradition_choice_index = [];
 
 var class_hp_bonus = 0;
 var foci_hp_bonus = 0;
@@ -534,8 +689,10 @@ var backgroundsDeferred = $.Deferred();
 var skillsDeferred = $.Deferred();
 var classesDeferred = $.Deferred();
 var fociDeferred = $.Deferred();
-var psionicsDeferred = $.Deferred();
+var spellsDeferred = $.Deferred();
+var artsDeferred = $.Deferred();
 var packagesDeferred = $.Deferred();
+var traditionsDeferred = $.Deferred();
 
 var punch_stab_choice = "";
 var shoot_stab_choice = "";
@@ -549,14 +706,16 @@ function loadJSON(){
     loadSkills();
     loadClasses();
     loadFoci();
-    loadPsionics();
+    loadSpells();
+    loadTraditions();
+    loadArts();
     loadPackages();
 }
 
 /*
 Fill out character sheet with choices specified by string query parameters. This process requires the information from the js/*.json files to be properly loaded beforehand; Promises are used to ensure the asynchronous timing is ordered correctly.
 */
-$.when( backgroundsDeferred, skillsDeferred, classesDeferred, fociDeferred, psionicsDeferred, packagesDeferred ).done(function ( v1, v2, v3, v4, v5, v6 ) {
+$.when( backgroundsDeferred, skillsDeferred, classesDeferred, fociDeferred, spellsDeferred, artsDeferred, packagesDeferred, traditionsDeferred ).done(function ( v1, v2, v3, v4, v5, v6 ) {
     readURLParams();
 });
 
@@ -621,7 +780,7 @@ function updateStatus3(){
 
     elemIcon.src= "assets/redx.png"
     
-    if(any_skill_remaining==0 && combat_skill_remaining==0 && noncombat_skill_remaining==0 && psychic_skill_remaining ==0){
+    if(any_skill_remaining==0 && combat_skill_remaining==0 && noncombat_skill_remaining==0){
 	if(remainingRolls == 0 || learning_choice_index.length == 2){
 	    elemIcon.src = "assets/checkmark.png"
 	}
@@ -653,7 +812,7 @@ function updateStatus5(){
 
     elemIcon.src= "assets/redx.png";
     
-    if(elemClass.value==""||elemClass.value=="psychic"){
+    if(elemClass.value==""||elemClass.value=="mage"){
 	if(elemGeneralFoci.value!=""){
 	    elemIcon.src = "assets/checkmark.png";
 	}
@@ -668,7 +827,7 @@ function updateStatus5(){
 	    elemIcon.src = "assets/checkmark.png";
 	}
     }
-    else if(elemClass.value=="war_exp"){
+    else if(elemClass.value=="exp_war"){
 	if(elemGeneralFoci.value!="" && elemCombatFoci.value!="" && elemNonCombatFoci.value!=""){
 	    elemIcon.src = "assets/checkmark.png";
 	}
@@ -1087,22 +1246,28 @@ function resetTemps(){
     tempSelections=["", "", "", "", "", ""];
 }
 
-let backgroundURL = 'https://www.swncharactercreator.com/js/backgrounds.json';
+let backgroundURL = 'https://www.swncharactercreator.com/js/backgrounds_wwn.json';
 var backgrounds;
 
-let skillURL = 'https://www.swncharactercreator.com/js/skill.json';
+let skillURL = 'https://www.swncharactercreator.com/js/skill_wwn.json';
 var skills;
 
-let fociURL = 'https://www.swncharactercreator.com/js/foci.json';
+let fociURL = 'https://www.swncharactercreator.com/js/foci_wwn.json';
 var foci;
 
-let classURL = 'https://www.swncharactercreator.com/js/class.json';
+let classURL = 'https://www.swncharactercreator.com/js/class_wwn.json';
 var classes;
 
-let psionicsURL = 'https://www.swncharactercreator.com/js/psionics.json';
-var psionics;
+let traditionsURL = 'https://www.swncharactercreator.com/js/traditions.json';
+var traditions;
 
-let packagesURL = 'https://www.swncharactercreator.com/js/equipment_packages.json';
+let spellsURL = 'https://www.swncharactercreator.com/js/spells.json';
+var spells;
+
+let artsURL = 'https://www.swncharactercreator.com/js/arts.json';
+var arts;
+
+let packagesURL = 'https://www.swncharactercreator.com/js/equipment_packages_wwn.json';
 var packages;
 
 
@@ -1286,54 +1451,9 @@ function generateSkillTable(skills){
 
     var skillKeys=Object.keys(skills).sort();
 
-    var nonPsychicSkillKeys = [];
-    var psychicSkillKeys = [];
-
-    for (var skillKey of skillKeys){
-	if(skills[skillKey]["psychic"]){
-	    psychicSkillKeys.push(skillKey);
-	}
-	else{
-	    nonPsychicSkillKeys.push(skillKey);
-	}
-    }
-
-    var height = Math.ceil((skillKeys.length+1)/3);
+    var height = Math.ceil((skillKeys.length)/3);
 
     var skillTable;
-    switch((skillKeys.length+1)%3){
-    case 0: //0 blanks
-	if(psychicSkillKeys.length == height){
-	    skillTable = nonPsychicSkillKeys.concat(["","HEADER"]).concat(psychicSkillKeys).concat(["",""]);
-	    height++;
-	}
-	else{
-	    skillTable = nonPsychicSkillKeys.concat(["HEADER"]).concat(psychicSkillKeys);
-	}
- 	break;
-    case 1: //2 blanks
-	if((psychicSkillKeys.length == height)||(psychicSkillKeys.length == height-2)){
-	    skillTable = nonPsychicSkillKeys.concat(["","HEADER"]).concat(psychicSkillKeys).concat([""]);
-	}
-	if((psychicSkillKeys.length == height-3)){
-	    skillTable = nonPsychicSkillKeys.concat(["HEADER"]).concat(psychicSkillKeys).concat(["",""]);
-	}
-	else{
-	    skillTable = nonPsychicSkillKeys.concat(["","","HEADER"]).concat(psychicSkillKeys);
-	}
-	break;
-    case 2: //1 blank
-	if((psychicSkillKeys.length == height)||(psychicSkillKeys.length == height-2)){
-	    skillTable = nonPsychicSkillKeys.concat(["HEADER"]).concat(psychicSkillKeys).concat([""]);
-	}
-	else{
-	    skillTable = nonPsychicSkillKeys.concat(["","HEADER"]).concat(psychicSkillKeys);
-	}
-	break;
-    }
-
-    var lastNonPsychicInd = skillTable.indexOf(nonPsychicSkillKeys[nonPsychicSkillKeys.length-1]);
-    var firstPsychicInd = skillTable.indexOf(psychicSkillKeys[0]);
 
     for(var i = 0; i < height; i++){
 	for(var j = 0; j < 3; j++){
@@ -1350,7 +1470,12 @@ function generateSkillTable(skills){
 	    var node;
 	    var tooltipNode;
 
-	    skillKey = skillTable[i+j*height];
+	    if((i+j*height)< skillKeys.length){
+		skillKey = skillKeys[i+j*height];
+	    }
+	    else{
+		skillKey = "";
+	    }
 	    
 	    if (skillKeys.includes(skillKey)){
 		
@@ -1411,7 +1536,7 @@ function generateSkillTable(skills){
 		    var innerSpan=document.createElement('span');
 		    var innerSpanUnderlay=document.createElement('span');
 
-		    if(skills[skillKey]["psychic"]){
+		    if(skillKey=="magic"){
 			innerSpan.setAttribute("class","checkbox-custom checkbox-purple");
 		    }
 		    else if(skills[skillKey]["combat"]){
@@ -1438,15 +1563,7 @@ function generateSkillTable(skills){
 
 		skillBlock.setAttribute("id",skillKey+'_box');
 
-	    }
-	    else if(skillKey == "HEADER"){
-		skillBlock.setAttribute("class","heading");
-		var psychicLabel = document.createElement("div");
-		psychicLabel.innerHTML = "Psychic";
-		psychicLabel.setAttribute("style","text-align: center; font-style:italic;");
-		skillBlock.appendChild(psychicLabel);
-	    }
-	    
+	    }	    
 	    
 	    tbl.appendChild(skillBlock);
             
@@ -1473,7 +1590,6 @@ function updateSkillBoxes(boxID){
     var idSuffix = parseInt(boxID.charAt(boxID.length-1));
     var skill = boxID.slice(0,-11);
     var isCombat = skills[skill]["combat"];
-    var isPsychic = skills[skill]["psychic"];
 
     var elemBox0 = document.getElementById(idPrefix+'0');
     var elemBox1 = document.getElementById(idPrefix+'1');
@@ -1496,24 +1612,7 @@ function updateSkillBoxes(boxID){
 		break
 	    }
 	    if(!(elemBoxes[i].checked)){
-		if (isPsychic){
-		    if ((getPsychicDisciplines().length > 0) && (skill!=getPsychicDisciplines()[0] && Class.includes("_psy"))){
-			alert("Partial Psychics can only learn one discipline");
-			break;	
-		    }
-		    if (usePsychicSkill()){		
-			elemBoxes[i].checked=true;
-			picked_skills.push(skill);
-			var anyPsychic = displayTechniques(skill);
-			$('#psionics_tabs').tabs("option","active",psionic_disciplines.indexOf(skill));
-			displayTechniquesTabs(anyPsychic);		
-		    }
-		    else{
-			alert("Out of psychic skill points!");
-			break;
-		    }
-		}
-		else if (isCombat){
+		if (isCombat){
 		    if (useCombatSkill() || useAnySkill()){
 			elemBoxes[i].checked=true;
 			picked_skills.push(skill);
@@ -1544,24 +1643,7 @@ function updateSkillBoxes(boxID){
 		elemBoxes[i].checked=false;
 		var ind = picked_skills.indexOf(skill);
 		picked_skills.splice(ind,1);
-		if(isPsychic){
-		    if(psychic_skill_remaining < psychic_skill_bank){
-			addPsychicSkill();
-			psychic_skill_bank--;
-			var anyPsychic = false;
-			var index = 0;
-    			for(var discipline of psionic_disciplines){
-			    anyPsychic = (displayTechniques(discipline) || anyPsychic);
-			    if (!anyPsychic) index++;
-			}
-			if(anyPsychic) $('#psionics_tabs').tabs("option","active",index);
-			displayTechniquesTabs(anyPsychic);
-		    }
-		    else{
-			alert("Something went wrong!");
-		    }
-		}
-		else if(isCombat){
+		if(isCombat){
 		    if(any_skill_remaining < any_skill_bank){
 			addAnySkill();
 			any_skill_bank--;
@@ -1591,9 +1673,6 @@ function updateSkillBoxes(boxID){
 	}
     }
     updateSkillTotal(skill);
-
-    technique_effort_bonus = 0;
-    if($("#metapsionics_total").html() == "1") technique_effort_bonus = 2;
 	
     computeEffort();
     
@@ -1832,9 +1911,6 @@ function incrementFixedSkill(skill){
     else if (skill == "any noncombat"){
 	addNonCombatSkill();
     }
-    else if (skill == "any psychic"){
-	addPsychicSkill();
-    }
     else if (skill == "+1 any stat"){
 	$('#anystat_dialog').dialog( "option", "width", 825 );
 	$('#anystat_dialog').dialog({
@@ -1960,7 +2036,7 @@ function addAnySkill(){
 
     var tooltipNode = document.createElement('span');
     tooltipNode.setAttribute("class","tooltiptext");
-    tooltipNode.innerHTML = "Allocate this to any non-psychic skill by clicking a box above.";
+    tooltipNode.innerHTML = "Allocate this to any skill by clicking a box above.";
 
 
     var oldStyle = elem.style.gridTemplateColumns;
@@ -2024,32 +2100,6 @@ function addNonCombatSkill(){
     elem.insertBefore(elemSkillDotBox,fillerElem);
 }
 
-function addPsychicSkill(){
-    psychic_skill_bank++;
-    psychic_skill_remaining++;
-    var elem = document.getElementById("skill_bank");
-    var fillerElem = document.getElementById("bank_filler");
-    var elemSkillDot = document.createElement("div");
-    var elemSkillDotBox = document.createElement("div");
-    elemSkillDot.setAttribute("class","purpledot");
-    elemSkillDotBox.setAttribute("class","dotbox");
-    elemSkillDotBox.setAttribute("style","height:"+window.getComputedStyle(elem).getPropertyValue('line-height'));
-
-    var tooltipNode = document.createElement('span');
-    tooltipNode.setAttribute("class","tooltiptext");
-    tooltipNode.innerHTML = "Allocate this to any psychic skill by clicking a box above.";
-
-    
-    var oldStyle = elem.style.gridTemplateColumns;
-    elem.style.gridTemplateColumns=oldStyle.slice(0,-4)+' fit-content(200px) '+oldStyle.slice(-4);
-    
-    elemSkillDotBox.appendChild(elemSkillDot);
-    elemSkillDotBox.appendChild(tooltipNode);
-    
-    elem.insertBefore(elemSkillDotBox,fillerElem);
-
-}
-
 function useAnySkill(){
 
     var blueDots = document.getElementsByClassName("bluedot");
@@ -2104,25 +2154,6 @@ function useNonCombatSkill(){
     }
 }
 
-function usePsychicSkill(){
-
-    var purpleDots = document.getElementsByClassName("purpledot");
-    if (purpleDots.length>0){
-	psychic_skill_remaining--;
-	purpleDots[0].parentElement.remove();
-
-	var elem = document.getElementById("skill_bank");
-	var oldStyle = elem.style.gridTemplateColumns;
-	elem.setAttribute("style","grid-template-columns:"+oldStyle.slice(0,-23)+oldStyle.slice(-4)+";");
-
-	
-	return true;
-    }
-    else{
-	return false;
-    }
-}
-
 
 function removeSkillDots(){
     
@@ -2135,11 +2166,6 @@ function removeSkillDots(){
     while (greenDots.length>0) greenDots[0].parentElement.remove();
     noncombat_skill_bank=0;
     noncombat_skill_remaining=0;
-
-    var purpleDots = document.getElementsByClassName("purpledot");
-    while (purpleDots.length>0) purpleDots[0].parentElement.remove();
-    psychic_skill_bank=0;
-    psychic_skill_remaining=0;
 
     var elem = document.getElementById("skill_bank");
     elem.setAttribute("style","grid-template-columns:fit-content(200px) 1fr;");
@@ -2192,10 +2218,10 @@ function populateFociList(foci) {
 	var type = foci[key]["type"];
 	
 	elem.add(option);
-	if((key!="psychic_training")&&(key!="wild_psychic_talent")){
+//	if((key!="psychic_training")&&(key!="wild_psychic_talent")){
 	    if(type == "combat" || type == "both") elem2.add(option2);
 	    if(type == "noncombat" || type == "both") elem3.add(option3);
-	}
+//	}
     }
     
     fociDeferred.resolve();
@@ -2259,7 +2285,7 @@ function tabulateFoci(){
     }
 
     if(combatFociOption.value !=""){
-	if((Class=="warrior"||Class=="war_exp") || Class=="war_psy"){
+	if((Class=="warrior"||Class=="exp_war") || Class=="war_psy"){
 
 	    picked_foci.push(combatFociOption.value);
 
@@ -2278,7 +2304,7 @@ function tabulateFoci(){
 		foci_skills.push(foci[nonCombatFociOption.value]["skill"]);
 	    }
 	}
-	else if (Class=="war_exp"){
+	else if (Class=="exp_war"){
 	    picked_foci.push(nonCombatFociOption.value);
 	    if(nonCombatFociOption.value!=fociOption.value && nonCombatFociOption.value!=combatFociOption.value){
 		foci_skills.push(foci[nonCombatFociOption.value]["skill"]);
@@ -2336,10 +2362,10 @@ function updateSkills(){
 
     for (var attr of attrs) checkAttr(attr);
 
-    var anyPsychic = false;
+    // var anyPsychic = false;
     
-    for(var discipline of psionic_disciplines) anyPsychic = (displayTechniques(discipline) || anyPsychic);    
-    displayTechniquesTabs(anyPsychic);
+    // for(var discipline of psionic_disciplines) anyPsychic = (displayTechniques(discipline) || anyPsychic);    
+    // displayTechniquesTabs(anyPsychic);
 
     updateStatus3();
 }
@@ -2388,11 +2414,11 @@ function loadClasses(){
     request.onload = function() {
 	classes = request.response;
 	classesDeferred.resolve();
-
     }
 
     request.send();
 }
+
 
 function optionsToValueArray(options){
     var arr = [];
@@ -2402,13 +2428,78 @@ function optionsToValueArray(options){
     return arr;
 }
 
+function displayAdvancementTable(Class) {
+    if (Object.keys(classes).includes(Class)){
+	$('#advancementTable').html(classes[Class]["advancement"]);
+    }
+    else{
+	$('#advancementTable').html("");
+    }
+}
+
+function displaySpellcastingTable(Class, tradition) {
+    if (Object.keys(traditions).includes(tradition)){
+	if(Class=="mage"){
+	    $('#spellcastingTable').html(traditions[tradition]["spellcastingTable"]);
+	}
+	else if (Class == "exp_mag"||Class == "mag_war"){
+	    $('#spellcastingTable').html(traditions[tradition]["spellcastingPartialTable"]);
+	}
+	else if (Class == "mag_mag"){
+	    if (tradition.includes("heal") || tradition.includes("vow") || !(tradition.includes("_"))){
+		if(tradition != "heal_vow"){
+		    $('#spellcastingTable').html(traditions[tradition]["spellcastingPartialTable"]);
+		}
+	    }
+	    else{
+		$('#spellcastingTable').html(traditions[tradition]["spellcastingTable"]);
+	    }
+	}
+    }
+    else{
+	$('#spellcastingTable').html("");
+    }
+}
+
+function displayUnarmedTable(Class, tradition) {
+    if (Object.keys(traditions).includes(tradition)){
+	if (Class == "exp_mag"||Class == "mag_war"||Class == "mag_mag"){
+	    $('#unarmedTable').html(traditions[tradition]["unarmedPartialTable"]);
+	}
+    }
+    else{
+	$('#unarmedTable').html("");
+    }
+}
+
+function displayArtsTable(Class, tradition) {
+    if (Object.keys(traditions).includes(tradition)){
+	if(Class=="mage"){
+	    $('#artsTable').html(traditions[tradition]["artsTable"]);
+	}
+	else if (Class == "exp_mag"||Class == "mag_war"){
+	    $('#artsTable').html(traditions[tradition]["artsPartialTable"]);
+	}
+	else if (Class == "mag_mag"){
+	    if (tradition.includes("_")){
+		$('#artsTable').html(traditions[tradition]["artsTable"]);
+	    }
+	    else{
+		$('#artsTable').html(traditions[tradition]["artsPartialTable"]);
+	    }
+	}
+    }
+    else{
+	$('#artsTable').html("");
+    }
+}
+
 function displayClass() {
     var elemClass = document.getElementById("class");
     var elemClassBonus = document.getElementById('class_hp_bonus');
     var elemAttackBonus = document.getElementById('attack_bonus');
     
     var Class = elemClass.value;
-
     restrictFoci(Class);
     
     var elemClassDescription = document.getElementById("class_description");
@@ -2421,9 +2512,11 @@ function displayClass() {
 	elemClassBonus.value = combineHPBonuses(class_hp_bonus,foci_hp_bonus);
 	elemAttackBonus.innerHTML = "+0";
 
+	$('#expandCollapseTableButton').show();
 	$('#tabs').tabs('option', 'active',0) ;
     }
     else{
+	$('#expandCollapseTableButton').show();
 	var elemClassName = document.createElement("h2")
 	elemClassName.innerHTML = classes[Class]["name"];
 
@@ -2437,7 +2530,8 @@ function displayClass() {
 	
 	var abilities = classes[Class]["abilities"];
 	
-	if (Class.indexOf("_")==-1){
+	//	if (Class.indexOf("_")==-1){
+	if (false){
 	    elemAbilities = document.createElement("ul");
 	    
 	    var elemAbilitiesTitle = document.createElement("h4");
@@ -2463,21 +2557,21 @@ function displayClass() {
 	    }
 	}
 
-	var elemHPTitle = document.createElement("h4");
-	elemHPTitle.innerHTML = "Hit Points and Attack Bonus";
+	// var elemHPTitle = document.createElement("h4");
+	// elemHPTitle.innerHTML = "Hit Points and Attack Bonus";
 
-	var elemHP = document.createElement("p");
-	elemHP.innerHTML = classes[Class]["hp"];
+	// var elemHP = document.createElement("p");
+	// elemHP.innerHTML = classes[Class]["hp"];
 
 	elemClassDescription.appendChild(elemAbilities);
-	elemClassDescription.appendChild(elemHPTitle);
-	elemClassDescription.appendChild(elemHP);
+	//elemClassDescription.appendChild(elemHPTitle);
+	//elemClassDescription.appendChild(elemHP);
 
-	if(Class=="psychic"){
-	    class_skills=["any psychic","any psychic"];
+	if(Class=="mage"||Class=="mag_mag"){
+//	    class_skills=[];
 	    hideCombatFoci();
 	    hideNonCombatFoci();
-	    class_hp_bonus = 0;
+	    class_hp_bonus = -1;
 	    elemClassBonus.value = combineHPBonuses(class_hp_bonus,foci_hp_bonus);
 	    elemAttackBonus.innerHTML = "+0";
 	    
@@ -2504,16 +2598,16 @@ function displayClass() {
 
 	    if($('#tabs').tabs('option', 'active')==1) $('#tabs').tabs('option', 'active',2) ;
 	}
-	else if(Class=="war_exp"){
-	    class_skills=[];
+	else if(Class=="exp_war"){
+//	    class_skills=[];
 	    showCombatFoci();
 	    showNonCombatFoci();
 	    class_hp_bonus = 2;
 	    elemClassBonus.value = combineHPBonuses(class_hp_bonus,foci_hp_bonus);
 	    elemAttackBonus.innerHTML = "+1";
 	}
-	else if(Class=="war_psy"){
-	    class_skills=["any psychic"];
+	else if(Class=="mag_war"){
+//	    class_skills=[];
 	    showCombatFoci();
 	    hideNonCombatFoci();
 	    class_hp_bonus = 2;
@@ -2522,8 +2616,8 @@ function displayClass() {
 
 	    if($('#tabs').tabs('option', 'active')==2) $('#tabs').tabs('option', 'active',1) ;
 	}
-	else if(Class=="exp_psy"){
-	    class_skills=["any psychic"];
+	else if(Class=="exp_mag"){
+//	    class_skills=[];
 	    hideCombatFoci();
 	    showNonCombatFoci();
 	    class_hp_bonus = 0;
@@ -2535,7 +2629,268 @@ function displayClass() {
     }
     totalHP();
     computeEffort();
+    displayAdvancementTable(Class);
+    populateTraditions(Class);
+    $('#expandCollapseSpellcastingTableButton').hide()
+    $('#expandCollapseUnarmedTableButton').hide()
+    $('#expandCollapseArtsTableButton').hide()
 }
+
+function populateTraditions(Class){
+    let elemTraditions = document.getElementById("traditions");
+    while(elemTraditions.options.length>0){
+	elemTraditions.remove(0);
+    }
+
+    var elemTraditionDescription = document.getElementById("tradition_description");
+    elemTraditionDescription.innerHTML = "";
+
+    displaySpellcastingTable(Class,"");
+    displayUnarmedTable(Class,"");
+    displayArtsTable(Class,"");
+
+    tradition_choice_index = [];
+    
+    var optionChooseOne = document.createElement("option");
+    optionChooseOne.text = "Choose one";
+    optionChooseOne.value =  "";
+    optionChooseOne.disabled = true;
+
+    var optionChooseTwo = document.createElement("option");
+    optionChooseTwo.text = "Choose two";
+    optionChooseTwo.value =  "";
+    optionChooseTwo.disabled = true;
+
+    var optionHigh = document.createElement("option");
+    optionHigh.text = "High Mage";
+    optionHigh.value =  "high";
+
+    var optionEle = document.createElement("option");
+    optionEle.text = "Elementalist";
+    optionEle.value =  "ele";
+
+    var optionHeal = document.createElement("option");
+    optionHeal.text = "Healer";
+    optionHeal.value =  "heal";
+
+    var optionNecro = document.createElement("option");
+    optionNecro.text = "Necromancer";
+    optionNecro.value =  "necro";
+
+    var optionVow = document.createElement("option");
+    optionVow.text = "Vowed";
+    optionVow.value =  "vow";
+    
+    if(Class=="mage"){
+	$('#traditionsPanel').show();
+	elemTraditions.removeAttribute("multiple");
+	
+	elemTraditions.add(optionChooseOne);
+	elemTraditions.add(optionHigh);
+	elemTraditions.add(optionEle);
+	elemTraditions.add(optionNecro);
+
+    }
+    else if(Class=="exp_mag" || Class == "mag_war"){
+	$('#traditionsPanel').show();
+	elemTraditions.removeAttribute("multiple");
+
+	elemTraditions.add(optionChooseOne);
+	elemTraditions.add(optionHigh);
+	elemTraditions.add(optionEle);
+	elemTraditions.add(optionHeal);
+	elemTraditions.add(optionNecro);
+	elemTraditions.add(optionVow);
+
+    }
+    else if(Class == "mag_mag"){
+	$('#traditionsPanel').show();
+
+	elemTraditions.setAttribute("multiple","");
+
+	elemTraditions.add(optionChooseTwo);
+	elemTraditions.add(optionHigh);
+	elemTraditions.add(optionEle);
+	elemTraditions.add(optionHeal);
+	elemTraditions.add(optionNecro);
+	elemTraditions.add(optionVow);
+
+	$("#traditions option").off("mousedown");
+	$("#traditions option").mousedown(function(e) {
+	    e.preventDefault();
+	    if(!(this.selected)){
+		this.selected=true;
+		tradition_choice_index.push(Array.from(elemTraditions.options).indexOf(this));
+		if (tradition_choice_index.length>2){
+		    (Array.from(elemTraditions.options))[tradition_choice_index.shift()].selected=false;
+		}
+	    }
+	    else if(this.selected){
+		this.selected=false;
+		var ind = tradition_choice_index.indexOf(Array.from(elemTraditions.options).indexOf(this));
+		tradition_choice_index.splice(ind,1);
+	    }
+	    
+	    var temp =($("#traditions").val());
+	    
+	    if(temp==null) temp=[];
+
+	    displayTradition();
+	    
+	    return false;
+	});
+	
+
+    }
+    else{
+	$('#traditionsPanel').hide();
+    }
+}
+
+function displayTradition() {
+    var elemTraditions = document.getElementById("traditions");
+    var elemClass = document.getElementById("class");
+
+    var tradition;
+
+    if(tradition_choice_index.length<=1){
+	tradition = elemTraditions.value;
+    }
+    else{
+	var trad1 = elemTraditions.options[tradition_choice_index[0]].value;
+	var trad2 = elemTraditions.options[tradition_choice_index[1]].value;
+	tradition = [trad1, trad2].sort().join("_");
+    }
+
+    
+    var elemTraditionDescription = document.getElementById("tradition_description");
+    elemTraditionDescription.innerHTML = "";
+    if (tradition==""){
+	class_skills=[];
+	// hideCombatFoci();
+	// hideNonCombatFoci();
+	// class_hp_bonus = 0;
+	// elemClassBonus.value = combineHPBonuses(class_hp_bonus,foci_hp_bonus);
+	// elemAttackBonus.innerHTML = "+0";
+
+	// $('#tabs').tabs('option', 'active',0) ;
+	$('#expandCollapseSpellcastingTableButton').hide()
+	$('#expandCollapseUnarmedTableButton').hide()
+	$('#expandCollapseArtsTableButton').hide()
+    }
+    else{
+	var elemTraditionName = document.createElement("h2")
+	elemTraditionName.innerHTML = traditions[tradition]["name"];
+
+	var elemTraditionDescriptionText = document.createElement("p");
+	elemTraditionDescriptionText.innerHTML = traditions[tradition]["description"];
+
+	elemTraditionDescription.appendChild(elemTraditionName);
+	elemTraditionDescription.appendChild(elemTraditionDescriptionText);
+
+	var elemBenefitHeader = document.createElement("h3");
+	elemBenefitHeader.innerHTML = "Benefits";
+	elemTraditionDescription.appendChild(elemBenefitHeader);
+	
+	var elemBenefits;
+	
+	var benefits = traditions[tradition]["benefits"];
+	
+	elemBenefits = document.createElement("ul");
+	for (var benefit of benefits){
+	    var elemBenefit = document.createElement("li");
+	    elemBenefit.innerHTML = benefit;
+	    elemBenefits.appendChild(elemBenefit);
+	}
+
+	elemTraditionDescription.appendChild(elemBenefits);
+	//elemClassDescription.appendChild(elemHPTitle);
+	//elemClassDescription.appendChild(elemHP);
+
+	$('#expandCollapseSpellcastingTableButton').hide()
+	$('#expandCollapseUnarmedTableButton').hide()
+	$('#expandCollapseArtsTableButton').hide()
+
+	
+	if(tradition.includes("high")||tradition.includes("ele")||tradition.includes("necro")){
+	    class_skills=["magic"];
+	    incrementFixedSkill("magic");
+	    
+	    $('#expandCollapseSpellcastingTableButton').show()
+	    $('#expandCollapseArtsTableButton').show()
+
+	//     hideCombatFoci();
+	//     hideNonCombatFoci();
+	//     class_hp_bonus = -1;
+	//     elemClassBonus.value = combineHPBonuses(class_hp_bonus,foci_hp_bonus);
+	//     elemAttackBonus.innerHTML = "+0";
+	    
+        //     $('#tabs').tabs('option', 'active',0);
+	    
+	}
+	if(tradition.includes("heal")){
+	    class_skills=["heal"];
+	    incrementFixedSkill("heal");
+	    
+	    $('#expandCollapseArtsTableButton').show()
+
+	//     showCombatFoci();
+	//     hideNonCombatFoci();
+	//     class_hp_bonus = 2;
+	//     elemClassBonus.value = combineHPBonuses(class_hp_bonus,foci_hp_bonus);
+	//     elemAttackBonus.innerHTML = "+1";
+
+	//     if($('#tabs').tabs('option', 'active')==2) $('#tabs').tabs('option', 'active',1) ;
+	}
+	if(tradition.includes("vow")){
+	    class_skills=["any noncombat"];
+	    
+	    $('#expandCollapseUnarmedTableButton').show()
+	    $('#expandCollapseArtsTableButton').show()
+
+	//     hideCombatFoci();
+	//     showNonCombatFoci();
+	//     class_hp_bonus = 0;
+	//     elemClassBonus.value = combineHPBonuses(class_hp_bonus,foci_hp_bonus);
+	//     elemAttackBonus.innerHTML = "+0";
+
+	//     if($('#tabs').tabs('option', 'active')==1) $('#tabs').tabs('option', 'active',2) ;
+	}
+	// else if(Class=="exp_war"){
+	//     class_skills=[];
+	//     showCombatFoci();
+	//     showNonCombatFoci();
+	//     class_hp_bonus = 2;
+	//     elemClassBonus.value = combineHPBonuses(class_hp_bonus,foci_hp_bonus);
+	//     elemAttackBonus.innerHTML = "+1";
+	// }
+	// else if(Class=="mag_war"){
+	//     class_skills=[];
+	//     showCombatFoci();
+	//     hideNonCombatFoci();
+	//     class_hp_bonus = 2;
+	//     elemClassBonus.value = combineHPBonuses(class_hp_bonus,foci_hp_bonus);
+	//     elemAttackBonus.innerHTML = "+1";
+
+	//     if($('#tabs').tabs('option', 'active')==2) $('#tabs').tabs('option', 'active',1) ;
+	// }
+	// else if(Class=="exp_mag"){
+	//     class_skills=[];
+	//     hideCombatFoci();
+	//     showNonCombatFoci();
+	//     class_hp_bonus = 0;
+	//     elemClassBonus.value = combineHPBonuses(class_hp_bonus,foci_hp_bonus);
+	//     elemAttackBonus.innerHTML = "+0";
+
+	//     if($('#tabs').tabs('option', 'active')==1) $('#tabs').tabs('option', 'active',2) ;
+	// }
+    }
+    computeEffort();
+    displaySpellcastingTable(elemClass.value,tradition);
+    displayUnarmedTable(elemClass.value,tradition);
+    displayArtsTable(elemClass.value,tradition);
+}
+
 
 function combineHPBonuses(class_bonus, foci_bonus){
     var tot=parseInt(class_bonus)+parseInt(foci_bonus);
@@ -2545,11 +2900,11 @@ function combineHPBonuses(class_bonus, foci_bonus){
 
 function restrictFoci(Class){
 
-    if((Class=="psychic")||(Class=="war_psy")||(Class=="exp_psy")){
-	restrictFociPsychic();
+    if((Class=="mage")||(Class=="mag_war")||(Class=="mag_mag")||(Class=="exp_mag")){
+	restrictFociMage();
     }
-    else if((Class=="expert")||(Class=="warrior")||(Class=="war_exp")){
-	restrictFociNonPsychic();
+    else if((Class=="expert")||(Class=="warrior")||(Class=="exp_war")){
+	restrictFociNonMage();
     }
     else{
 	unrestrictFoci();
@@ -2622,21 +2977,62 @@ function hideNonCombatFoci(){
     isolateFoci();
 }
 
-function loadPsionics(){
+function loadTraditions(){
     let request = new XMLHttpRequest();
-    request.open('GET', psionicsURL);
+    request.open('GET', traditionsURL);
 
     request.responseType = 'json';
 
 
     request.onload = function() {
-	psionics = request.response;
-	populatePsionicsList(psionics);
+	traditions = request.response;
+	populateTraditionsList(traditions);
     }
 
     request.send();
 }
 
+function loadSpells(){
+    let request = new XMLHttpRequest();
+    request.open('GET', spellsURL);
+
+    request.responseType = 'json';
+
+
+    request.onload = function() {
+	spells = request.response;
+	populateSpellsList(spells);
+    }
+
+    request.send();
+}
+
+function loadArts(){
+    let request = new XMLHttpRequest();
+    request.open('GET', artsURL);
+
+    request.responseType = 'json';
+
+
+    request.onload = function() {
+	spells = request.response;
+	populateArtsList(arts);
+    }
+
+    request.send();
+}
+
+function populateTraditionsList(spells){
+    traditionsDeferred.resolve();
+}
+
+function populateSpellsList(spells){
+    spellsDeferred.resolve();
+}
+
+function populateArtsList(arts){
+    artsDeferred.resolve();
+}
 
 function populatePsionicsList(psionics) {
     for (var discipline of psionic_disciplines){
@@ -2721,15 +3117,12 @@ function displayTechniques(discipline){
 
 function displayTechniquesTabs(anyPsychic){
     var elem = document.getElementById("psionics_tabs");
-    var elem2 = document.getElementById("psionics_instruction");
 
     if (anyPsychic){
 	elem.style.display = "block";
-	elem2.style.display = "none";
     }
     else{
 	elem.style.display = "none";
-	elem2.style.display = "block";
     }
 }
 
@@ -2842,7 +3235,7 @@ function displayEquipmentPackage(Package){
     if (Package != ""){
 	if(Package == "custom"){
 	    var elemItem = document.createElement("li");
-	    elemItem.innerHTML = (rollDie(6)+rollDie(6))*100+" credits";
+	    elemItem.innerHTML = (rollDie(6)+rollDie(6)+rollDie(6))*10+" silver pieces in cash";
 	    packageList.appendChild(elemItem);
 	}
 	else{
@@ -2858,7 +3251,7 @@ function displayEquipmentPackage(Package){
     elemEquipmentPackageDescription.appendChild(packageList);
 }
 
-function restrictFociPsychic(){
+function restrictFociMage(){
 
     var elemFoci = document.getElementById('foci');
     var elemCombatFoci = document.getElementById('combat_foci');
@@ -2870,65 +3263,23 @@ function restrictFociPsychic(){
     
 //    $("#elemFoci").selectmenu("destroy");
     
-    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("psychic_training")].removeAttribute("disabled");
+    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("armored_magic")].removeAttribute("disabled");
     
-    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("wild_psychic_talent")].disabled="disabled";
+    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("developed_attribute")].disabled="disabled";
+
+    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("nullifier")].disabled="disabled";
     
-    if(elemFoci.selectedIndex == optionsToValueArray(elemFoci.options).indexOf("wild_psychic_talent")){
+    if((elemFoci.selectedIndex == optionsToValueArray(elemFoci.options).indexOf("developed_attribute")) || (elemFoci.selectedIndex == optionsToValueArray(elemFoci.options).indexOf("nullifier"))){
 	elemFoci.selectedIndex = 0;
 	displayFoci("");
 	
-	while(foci_skills.indexOf("any psychic") > -1){
-	    foci_skills.splice(foci_skills.indexOf("any psychic"),1);
-	}
+	// while(foci_skills.indexOf("any psychic") > -1){
+	//     foci_skills.splice(foci_skills.indexOf("any psychic"),1);
+	// }
     }
-
-//    $("#elemFoci").selectmenu("refresh");
-//    $("#elemFoci").selectmenu();
-
-    // if((combatFociOption.value!="psychic_training") || (nonCombatFociOption.value!="psychic_training")){
-    // 	elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("psychic_training")].removeAttribute("disabled");
-    // }
-    // elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("wild_psychic_talent")].disabled="true";
-
-    // if(elemFoci.selectedIndex == optionsToValueArray(elemFoci.options).indexOf("wild_psychic_talent")){
-    // 	elemFoci.selectedIndex = 0;
-
-    // 	while(foci_skills.indexOf("any psychic") > -1){
-    // 	    foci_skills.splice(foci_skills.indexOf("any psychic"),1);
-    // 	}
-	
-    // }
-    
-    // if((fociOption.value!="psychic_training") || (nonCombatFociOption.value!="psychic_training")){
-    // 	elemCombatFoci.options[optionsToValueArray(elemCombatFoci.options).indexOf("psychic_training")].removeAttribute("disabled");
-    // }
-    // elemCombatFoci.options[optionsToValueArray(elemCombatFoci.options).indexOf("wild_psychic_talent")].disabled="true";
-
-    // if(elemCombatFoci.selectedIndex == optionsToValueArray(elemCombatFoci.options).indexOf("wild_psychic_talent")){
-    // 	elemCombatFoci.selectedIndex = 0;
-    // 	while(foci_skills.indexOf("any psychic") > -1){
-    // 	    foci_skills.splice(foci_skills.indexOf("any psychic"),1);
-    // 	}
-
-    // }
-
-    // if((fociOption.value!="psychic_training") || (combatFociOption.value!="psychic_training")){
-    // 	elemNonCombatFoci.options[optionsToValueArray(elemNonCombatFoci.options).indexOf("psychic_training")].removeAttribute("disabled");
-    // }
-    // elemNonCombatFoci.options[optionsToValueArray(elemNonCombatFoci.options).indexOf("wild_psychic_talent")].disabled="true";
-
-    // if(elemNonCombatFoci.selectedIndex == optionsToValueArray(elemNonCombatFoci.options).indexOf("wild_psychic_talent")){
-    // 	elemNonCombatFoci.selectedIndex = 0;
-    // 	while(foci_skills.indexOf("any psychic") > -1){
-    // 	    foci_skills.splice(foci_skills.indexOf("any psychic"),1);
-    // 	}
-
-    // }
-
 }
 
-function restrictFociNonPsychic(){
+function restrictFociNonMage(){
 
     var elemFoci = document.getElementById('foci');
     var elemCombatFoci = document.getElementById('combat_foci');
@@ -2940,45 +3291,20 @@ function restrictFociNonPsychic(){
 
     //$("#elemFoci").selectmenu("destroy");
     
-    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("psychic_training")].disabled="disabled";
+    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("armored_magic")].disabled="disabled";
 
-    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("wild_psychic_talent")].removeAttribute("disabled");
-        
-    if(elemFoci.selectedIndex == optionsToValueArray(elemFoci.options).indexOf("psychic_training")){
+    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("developed_attribute")].removeAttribute("disabled");
+
+    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("nullifier")].removeAttribute("disabled");
+
+    if(elemFoci.selectedIndex == optionsToValueArray(elemFoci.options).indexOf("armored_magic")){
 	elemFoci.selectedIndex = 0;
 	displayFoci("");
 	
-	while(foci_skills.indexOf("any psychic") > -1){
-	    foci_skills.splice(foci_skills.indexOf("any psychic"),1);
-	}
+	// while(foci_skills.indexOf("any psychic") > -1){
+	//     foci_skills.splice(foci_skills.indexOf("any psychic"),1);
+	// }
     }
-
-//    $("#elemFoci").selectmenu("refresh");
-//    $("#elemFoci").selectmenu();
-    
-    // elemCombatFoci.options[optionsToValueArray(elemCombatFoci.options).indexOf("psychic_training")].disabled="true";
-    // if((fociOption.value!="wild_psychic_talent") || (nonCombatFociOption.value!="wild_psychic_talent")){
-    // 	elemCombatFoci.options[optionsToValueArray(elemCombatFoci.options).indexOf("wild_psychic_talent")].removeAttribute("disabled");
-    // }
-
-    // if(elemCombatFoci.selectedIndex == optionsToValueArray(elemCombatFoci.options).indexOf("psychic_training")){
-    // 	elemCombatFoci.selectedIndex = 0;
-    // 	while(foci_skills.indexOf("any psychic") > -1){
-    // 	    foci_skills.splice(foci_skills.indexOf("any psychic"),1);
-    // 	}
-    // }
-    
-    // elemNonCombatFoci.options[optionsToValueArray(elemNonCombatFoci.options).indexOf("psychic_training")].disabled="true";
-    // if((fociOption.value!="wild_psychic_talent") || (combatFociOption.value!="wild_psychic_talent")){
-    // 	elemNonCombatFoci.options[optionsToValueArray(elemNonCombatFoci.options).indexOf("wild_psychic_talent")].removeAttribute("disabled");
-    // }
-
-    // if(elemNonCombatFoci.selectedIndex == optionsToValueArray(elemNonCombatFoci.options).indexOf("psychic_training")){
-    // 	elemNonCombatFoci.selectedIndex = 0;
-    // 	while(foci_skills.indexOf("any psychic") > -1){
-    // 	    foci_skills.splice(foci_skills.indexOf("any psychic"),1);
-    // 	}
-    // }
 
 }
 
@@ -2990,43 +3316,190 @@ function unrestrictFoci(){
 
     //    $("#elemFoci").selectmenu("destroy");
     
-    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("psychic_training")].removeAttribute("disabled");
-    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("wild_psychic_talent")].removeAttribute("disabled");
+    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("armored_magic")].removeAttribute("disabled");
+    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("developed_attribute")].removeAttribute("disabled");
+    elemFoci.options[optionsToValueArray(elemFoci.options).indexOf("nullifier")].removeAttribute("disabled");
     
-    // elemCombatFoci.options[optionsToValueArray(elemCombatFoci.options).indexOf("psychic_training")].removeAttribute("disabled");
-    // elemCombatFoci.options[optionsToValueArray(elemCombatFoci.options).indexOf("wild_psychic_talent")].removeAttribute("disabled");
-    
-    // elemNonCombatFoci.options[optionsToValueArray(elemNonCombatFoci.options).indexOf("psychic_training")].removeAttribute("disabled");
-    // elemNonCombatFoci.options[optionsToValueArray(elemNonCombatFoci.options).indexOf("wild_psychic_talent")].removeAttribute("disabled");
-
-//    $("#elemFoci").selectmenu();
-
 }
 
 function computeEffort(){
-    var elemEffort = document.getElementById("effort");
-    var elemCon = document.getElementById("constitution_attr");
-    var elemWis = document.getElementById("wisdom_attr");
+    var elemEffort1 = document.getElementById("effort1");
+    var elemEffort2 = document.getElementById("effort2");
+    var elemEffortHeading1 = document.getElementById("effort1_heading");
+    var elemEffortHeading2 = document.getElementById("effort2_heading");
+    var elemStr = document.getElementById("strength_mod");
+    var elemDex = document.getElementById("dexterity_mod");
+    var elemCon = document.getElementById("constitution_mod");
+    var elemInt = document.getElementById("intelligence_mod");
+    var elemWis = document.getElementById("wisdom_mod");
+    var elemCha = document.getElementById("charisma_mod");
     var elemClass = document.getElementById("class");
-
-    var maxEffort = 0;
-    var maxPsychicSkill=0;
+    var elemTradition = document.getElementById("traditions");
     
-    for (var discipline of psionic_disciplines){
-	if($("#"+discipline+"_total").html()!=""){
-	    maxPsychicSkill= Math.max(maxPsychicSkill,parseInt($("#"+discipline+"_total").html()));
+    var maxEffort = 0;
+    var maxMagicSkill=0;
+    var maxHealSkill=0;
+
+    elemEffort1.innerHTML = "";
+    elemEffortHeading1.innerHTML = "";
+    elemEffort2.innerHTML = "";
+    elemEffortHeading2.innerHTML = "";
+
+    if(elemClass.value == "mage"){
+	if($("#magic_total").html()!=""){
+	    maxMagicSkill= parseInt($("#magic_total").html());
+	}
+
+	maxEffort = Math.max(1,1 + maxMagicSkill + foci_effort_bonus + technique_effort_bonus + Math.max(parseInt(elemInt.innerHTML.slice(1)),parseInt(elemCha.innerHTML.slice(1))));
+
+	if(elemTradition.value == "high"){
+	    elemEffortHeading1.innerHTML = "Effort (High Magic):";
+	    elemEffort1.innerHTML = "0/"+maxEffort;
+	}
+	else if(elemTradition.value == "ele"){
+	    elemEffortHeading1.innerHTML = "Effort (Elementalist):";
+	    elemEffort1.innerHTML = "0/"+maxEffort;
+	}
+	else if(elemTradition.value == "necro"){
+	    elemEffortHeading1.innerHTML = "Effort (Necromancer):";
+	    elemEffort1.innerHTML = "0/"+maxEffort;
 	}
     }
+    else if (elemClass.value == "exp_mag" || elemClass.value == "mag_war"){
+	if(elemTradition.value == "heal"){
+	    if($("#heal_total").html()!=""){
+		maxHealSkill= parseInt($("#heal_total").html());
+	    }
 
-    if(elemClass.value.includes("psy")){
-	maxEffort = Math.max(1,1 + maxPsychicSkill + foci_effort_bonus + technique_effort_bonus + computeMod(Math.max(parseInt(elemCon.innerHTML),parseInt(elemWis.innerHTML))));
-    }
-    else if(picked_foci.includes("wild_psychic_talent")){
-	maxEffort = 1;
-    }
+	    maxEffort = Math.max(1,0 + maxHealSkill + foci_effort_bonus + technique_effort_bonus + Math.max(parseInt(elemInt.innerHTML.slice(1)),parseInt(elemCha.innerHTML.slice(1))));
+
+	    elemEffortHeading1.innerHTML = "Effort (Healer):";
+	    elemEffort1.innerHTML = "0/"+maxEffort;
+	}
+	else if(elemTradition.value == "vow"){
+	    //This needs to be changed to use the selected Vowed skill
+	    if($("#heal_total").html()!=""){
+		maxHealSkill= parseInt($("#heal_total").html());
+	    }
+
+	    maxEffort = Math.max(1,0 + maxHealSkill + foci_effort_bonus + technique_effort_bonus + Math.max(parseInt(elemStr.innerHTML.slice(1)),parseInt(elemDex.innerHTML.slice(1)),parseInt(elemCon.innerHTML.slice(1)),parseInt(elemInt.innerHTML.slice(1)),parseInt(elemWis.innerHTML.slice(1)),parseInt(elemCha.innerHTML.slice(1))));
+
+	    elemEffortHeading1.innerHTML = "Effort (Vowed):";
+	    elemEffort1.innerHTML = "0/"+maxEffort;
+	}
+	
+	else{
+	    if($("#magic_total").html()!=""){
+		maxMagicSkill= parseInt($("#magic_total").html());
+	    }
 	    
-    
-    elemEffort.innerHTML = maxEffort;
+	    maxEffort = Math.max(1,0 + maxMagicSkill + foci_effort_bonus + technique_effort_bonus + Math.max(parseInt(elemInt.innerHTML.slice(1)),parseInt(elemCha.innerHTML.slice(1))));
+	    
+	    if(elemTradition.value == "high"){
+		elemEffortHeading1.innerHTML = "Effort (High Magic):";
+		elemEffort1.innerHTML = "0/"+maxEffort;
+	    }
+	    else if(elemTradition.value == "ele"){
+		elemEffortHeading1.innerHTML = "Effort (Elementalist):";
+		elemEffort1.innerHTML = "0/"+maxEffort;
+	    }
+	    else if(elemTradition.value == "necro"){
+		elemEffortHeading1.innerHTML = "Effort (Necromancer):";
+		elemEffort1.innerHTML = "0/"+maxEffort;
+	    }
+	}
+    }
+    else if (elemClass.value == "mag_mag" && tradition_choice_index.length>0){
+	
+	var tradition1 = elemTradition.options[tradition_choice_index.concat().sort()[0]].value;
+	if(tradition1 == "heal"){
+	    if($("#heal_total").html()!=""){
+		maxHealSkill= parseInt($("#heal_total").html());
+	    }
+
+	    maxEffort = Math.max(1,0 + maxHealSkill + foci_effort_bonus + technique_effort_bonus + Math.max(parseInt(elemInt.innerHTML.slice(1)),parseInt(elemCha.innerHTML.slice(1))));
+
+	    elemEffortHeading1.innerHTML = "Effort (Healer):";
+	    elemEffort1.innerHTML = "0/"+maxEffort;
+	}
+	else if(tradition1 == "vow"){
+	    //This needs to be changed to use the selected Vowed skill
+	    if($("#heal_total").html()!=""){
+		maxHealSkill= parseInt($("#heal_total").html());
+	    }
+
+	    maxEffort = Math.max(1,0 + maxHealSkill + foci_effort_bonus + technique_effort_bonus + Math.max(parseInt(elemStr.innerHTML.slice(1)),parseInt(elemDex.innerHTML.slice(1)),parseInt(elemCon.innerHTML.slice(1)),parseInt(elemInt.innerHTML.slice(1)),parseInt(elemWis.innerHTML.slice(1)),parseInt(elemCha.innerHTML.slice(1))));
+
+	    elemEffortHeading1.innerHTML = "Effort (Vowed):";
+	    elemEffort1.innerHTML = "0/"+maxEffort;
+	}
+	
+	else{
+	    if($("#magic_total").html()!=""){
+		maxMagicSkill= parseInt($("#magic_total").html());
+	    }
+	    
+	    maxEffort = Math.max(1,0 + maxMagicSkill + foci_effort_bonus + technique_effort_bonus + Math.max(parseInt(elemInt.innerHTML.slice(1)),parseInt(elemCha.innerHTML.slice(1))));
+	    
+	    if(tradition1 == "high"){
+		elemEffortHeading1.innerHTML = "Effort (High Magic):";
+		elemEffort1.innerHTML = "0/"+maxEffort;
+	    }
+	    else if(tradition1 == "ele"){
+		elemEffortHeading1.innerHTML = "Effort (Elementalist):";
+		elemEffort1.innerHTML = "0/"+maxEffort;
+	    }
+	    else if(tradition1 == "necro"){
+		elemEffortHeading1.innerHTML = "Effort (Necromancer):";
+		elemEffort1.innerHTML = "0/"+maxEffort;
+	    }
+	}
+	if (tradition_choice_index.length==2){
+	    var tradition2 = elemTradition.options[tradition_choice_index.concat().sort()[1]].value;
+	    if(tradition2 == "heal"){
+		if($("#heal_total").html()!=""){
+		    maxHealSkill= parseInt($("#heal_total").html());
+		}
+		
+		maxEffort = Math.max(1,0 + maxHealSkill + foci_effort_bonus + technique_effort_bonus + Math.max(parseInt(elemInt.innerHTML.slice(1)),parseInt(elemCha.innerHTML.slice(1))));
+		
+		elemEffortHeading2.innerHTML = "Effort (Healer):";
+		elemEffort2.innerHTML = "0/"+maxEffort;
+	    }
+	    else if(tradition2 == "vow"){
+		//This needs to be changed to use the selected Vowed skill
+		if($("#heal_total").html()!=""){
+		    maxHealSkill= parseInt($("#heal_total").html());
+		}
+		
+		maxEffort = Math.max(1,0 + maxHealSkill + foci_effort_bonus + technique_effort_bonus + Math.max(parseInt(elemStr.innerHTML.slice(1)),parseInt(elemDex.innerHTML.slice(1)),parseInt(elemCon.innerHTML.slice(1)),parseInt(elemInt.innerHTML.slice(1)),parseInt(elemWis.innerHTML.slice(1)),parseInt(elemCha.innerHTML.slice(1))));
+		
+		elemEffortHeading2.innerHTML = "Effort (Vowed):";
+		elemEffort2.innerHTML = "0/"+maxEffort;
+	    }
+	    
+	    else{
+		if($("#magic_total").html()!=""){
+		    maxMagicSkill= parseInt($("#magic_total").html());
+		}
+		
+		maxEffort = Math.max(1,0 + maxMagicSkill + foci_effort_bonus + technique_effort_bonus + Math.max(parseInt(elemInt.innerHTML.slice(1)),parseInt(elemCha.innerHTML.slice(1))));
+		
+		if(tradition2 == "high"){
+		    elemEffortHeading2.innerHTML = "Effort (High Magic):";
+		    elemEffort2.innerHTML = "0/"+maxEffort;
+		}
+		else if(tradition2 == "ele"){
+		    elemEffortHeading2.innerHTML = "Effort (Elementalist):";
+		    elemEffort2.innerHTML = "0/"+maxEffort;
+		}
+		else if(tradition2 == "necro"){
+		    elemEffortHeading2.innerHTML = "Effort (Necromancer):";
+		    elemEffort2.innerHTML = "0/"+maxEffort;
+		}
+	    }
+	}
+    }
 }
 
 
@@ -3725,7 +4198,8 @@ function pickRandomAttributes(){
 Choose a class randomly according to the following rates: Expert 25%, Psychic 25%, Warrior 25%, Expert/Psychic 8.33%, Expert/Warrior 8.33%, Psychic/Warrior 8.33%
 */
 function pickRandomClass(){
-    var roll = rollDie(12);
+//    var roll = rollDie(12);
+    var roll = rollDie(9);
     var Class;
     if (roll <= 3){
 	Class = "expert";
@@ -3733,7 +4207,7 @@ function pickRandomClass(){
 	pickRandomNonCombatFocus();
     }
     else if(roll <= 6){
-	Class = "psychic";
+	Class = "mage";
 	pickRandomGeneralFocus();
     }
     else if(roll <= 9){
@@ -3741,22 +4215,22 @@ function pickRandomClass(){
 	pickRandomGeneralFocus();
 	pickRandomCombatFocus();
     }
-    else if(roll == 10){
-	Class = "exp_psy";
-	pickRandomGeneralFocus();
-	pickRandomNonCombatFocus();
-    }
-    else if (roll == 11){
-	Class = "war_exp";
-	pickRandomGeneralFocus();
-	pickRandomCombatFocus();
-	pickRandomNonCombatFocus();
-    }
-    else if (roll == 12){
-	Class = "war_psy";
-	pickRandomGeneralFocus();
-	pickRandomCombatFocus();
-    }
+    // else if(roll == 10){
+    // 	Class = "exp_psy";
+    // 	pickRandomGeneralFocus();
+    // 	pickRandomNonCombatFocus();
+    // }
+    // else if (roll == 11){
+    // 	Class = "exp_war";
+    // 	pickRandomGeneralFocus();
+    // 	pickRandomCombatFocus();
+    // 	pickRandomNonCombatFocus();
+    // }
+    // else if (roll == 12){
+    // 	Class = "war_psy";
+    // 	pickRandomGeneralFocus();
+    // 	pickRandomCombatFocus();
+    // }
 
     $('#class_mirror').selectmenu().val(Class);
     $('#class_mirror').selectmenu("refresh");
@@ -3848,27 +4322,23 @@ function pickRandomSkills(){
 	pickRandomNonCombatSkill();
 //	useNonCombatSkill();
     }
-    while(psychic_skill_remaining > 0){
-	pickRandomPsychicSkill();
-//	usePsychicSkill();
-    }
     while(any_skill_remaining > 0){
-	pickRandomNonPsychicSkill();
+	pickRandomAnySkill();
 //	useAnySkill();
     }
       
 }
 
-function pickRandomNonPsychicSkill(){
+function pickRandomAnySkill(){
     var skillKeys = Object.keys(skills);
 
-    var anySkills = [];
-    for (var skillKey of skillKeys){
-	if(!(skills[skillKey]["psychic"])) anySkills.push(skillKey);
-    }
+    // var anySkills = [];
+    // for (var skillKey of skillKeys){
+    // 	if(!(skills[skillKey]["psychic"])) anySkills.push(skillKey);
+    // }
 
-    var roll=rollDie(anySkills.length);
-    var skill=anySkills[roll-1];
+    var roll=rollDie(skillKeys.length);
+    var skill=skillKeys[roll-1];
 
     incrementPickedSkill(skill);
     
@@ -3923,7 +4393,7 @@ function pickRandomNonCombatSkill(){
     var nonCombatSkills = [];
     for (var skillKey of skillKeys){
 //	console.log(skillKey);
-	if(!(skills[skillKey]["combat"]||skills[skillKey]["psychic"])) nonCombatSkills.push(skillKey);
+	if(!(skills[skillKey]["combat"])) nonCombatSkills.push(skillKey);
     }
 
     var roll=rollDie(nonCombatSkills.length);
@@ -3947,35 +4417,21 @@ function pickRandomNonCombatSkill(){
 //    incrementFixedSkill(nonCombatSkills[roll-1]);
 }
 
-function pickRandomPsychicSkill(){
-    var skillKeys = Object.keys(skills);
+// function pickRandomPsychicSkill(){
+//     var skillKeys = Object.keys(skills);
 
-    var psychicSkills = [];
-    for (var skillKey of skillKeys){
-//	console.log(skillKey);
-	if(skills[skillKey]["psychic"]) psychicSkills.push(skillKey);
-    }
+//     var psychicSkills = [];
+//     for (var skillKey of skillKeys){
+// //	console.log(skillKey);
+// 	if(skills[skillKey]["psychic"]) psychicSkills.push(skillKey);
+//     }
 
-    var roll=rollDie(psychicSkills.length);
-    var skill=psychicSkills[roll-1];
+//     var roll=rollDie(psychicSkills.length);
+//     var skill=psychicSkills[roll-1];
 
-    incrementPickedSkill(skill);
+//     incrementPickedSkill(skill);
 
-    // if ($('#'+skill+'_rank_box_1').prop( "checked")){
-    // }
-    // else if ($('#'+skill+'_rank_box_0').prop( "checked")){
-    // 	$('#'+skill+'_rank_box_1').prop( "checked",true);
-    // 	$('#'+skill+'_rank_box_1').trigger("change");
-    // }
-    // else{
-    // 	$('#'+skill+'_rank_box_0').prop( "checked", true );
-    // 	$('#'+skill+'_rank_box_0').trigger("change");
-    // }
-
-//    console.log(roll);
-//    console.log(psychicSkills[roll-1]);
-//    incrementFixedSkill(psychicSkills[roll-1]);
-}
+// }
 
 
 function generateExportURL(){

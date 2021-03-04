@@ -1,4 +1,4 @@
-# SWN Character Creator
-In-browser app to create characters in the *Sine Nominee* tabletop roleplaying game ***Stars Without Number: Revised Edition***. All information taken from the free version of the [core rulebook](https://www.drivethrurpg.com/product/230009/Stars-Without-Number-Revised-Edition-Free-Version).
+# WWN Character Creator
+In-browser app to create characters in the *Sine Nominee* tabletop roleplaying game ***Worlds Without Number***. All information taken from the beta-test ruleset v0.17 available to Kickstarter supporters **(TO BE UPDATED WHEN GAME RELEASES)**.
 
-The site can be viewed at: https://www.swncharactercreator.com/
+The site can be viewed at: https://noah-sennett.github.io/wwn-character-creator

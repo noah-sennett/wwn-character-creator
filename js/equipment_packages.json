@@ -1,41 +1,26 @@
 {
-    "barbarian":{
-	"name":"Barbarian",
-	"items":["Spear (1d6+1 damage)", "Primitive hide armor (AC 13)", "Primitive shield (+1 AC)", "Knife (1d4 damage)", "Backpack (TL0)", "7 days rations", "20m rope", "500 credits"]
+    "adventuring_peasant":{
+	"name":"Adventuring Peasant",
+	"items":["War Shirt (AC 11)", "Large Shield (AC 14 when held)","Light Spear (1d6 dmg, Shock 2/AC 13)", "Dagger (1d4 dmg, Shock 1/AC 15)", "Backpack", "Rations, 1 week", "Mule and small cart", "Tinder box and 3 torches"]
     },
-    "blade":{
-	"name":"Blade",
-	"items":["Monoblade sword (1d8+1 damage)", "Woven body armor (AC 15)", "Secure clothing (AC 13)", "Thermal knife (1d6 damage)", "Backpack (TL0)", "Compad", "Lazarus patch", "50 credits"]
+    "armored_warrior":{
+	"name":"Armored Warrior",
+	"items":["Pieced Armor (AC 14)", "Large Shield (+1 AC when wearing armor)","Short Sword (1d6 dmg, Shock 2/AC 15)","Dagger (1d4 dmg, Shock 1/AC 15)","Backpack","Tinder box and 3 torches"]
     },
-    "thief":{
-	"name":"Thief",
-	"items":["Laser pistol (1d6 damage)", "Armored undersuit (AC 13)", "Monoblade knife (1d6 damage)", "Climbing harness", "Low-light goggles", "2 type A cells", "Backpack (TL0)", "Compad", "Metatool", "25 credits"]
+    "gentry_wayfarer":{
+	"name":"Gentry Wayfarer",
+	"items":["Buff Coat (AC 12)","Small Shield (+1 AC when wearing armor)","Short Sword (1d6 dmg, Shock 2/AC 15)","Backpack","Rations, 1 week","Waterskin","Fine suit of clothing carried in the pack","Writing kit & 20 sheets of paper","20 silver coins in cash"]
     },
-    "hacker":{
-	"name":"Hacker",
-	"items":["Laser pistol (1d6 damage)", "Secure clothing (AC 13)", "Postech toolkit", "3 units of spare parts", "2 type A cells", "Dataslab", "Metatool", "2 line shunts", "100 credits"]
+    "ranger_archer":{
+	"name":"Ranger or Archer",
+	"items":["Buff Coat (AC 12)","Bow, Large (1d8 damage, no Shock)","20 arrows & quiver","Dagger (1d4 dmg, Shock 1/AC 15)","Hand Axe (1d6 dmg, Shock 1/AC 15)","Backpack","Cooking utensils and 2 weeks of rations","Waterskin","Tinder box and 3 torches","20 silver pieces in cash"]
     },
-    "gunslinger":{
-	"name":"Gunslinger",
-	"items":["Laser pistol (1d6 damage)", "Armored undersuit (AC 13)", "Monoblade knife (1d6 damage)", "8 type A cells", "Backpack (TL0)", "Compad", "100 credits"]
+    "roguish_wanderer":{
+	"name":"Roguish Wanderer",
+	"items":["Buff Coat (AC 12)","Small Shield (+1 AC when wearing armor)","Short Sword (1d6 dmg, Shock 2/AC 15)","Throwing Blades, 5 (1d4 dmg, no Shock)","Backpack","Rations, 1 week","Waterskin","Tinder box and 3 torches","Grappling hook and 50’ of rope"]
     },
-    "soldier":{
-	"name":"Soldier",
-	"items":["Combat rifle (1d12 damage)", "Woven body armor (AC 15)", "Knife (1d4 damage)", "80 rounds ammo", "Backpack (TL0)", "Compad", "100 credits"]
-    },
-    "scout":{
-	"name":"Scout",
-	"items":["Laser rifle (1d10 damage)", "Armored vacc suit (AC 13)", "Knife (1d4 damage)", "Survey scanner", "Survival kit", "Binoculars (TL3)", "8 type A cells", "Backpack (TL0)", "Compad", "25 credits"]},
-    "medic":{
-	"name":"Medic",
-	"items":["Laser pistol (1d6 damage)", "Secure clothing (AC 13)", "4 Lazarus patches", "2 doses of Lift", "Backpack (TL0)", "Medkit", "Compad", "Bioscanner", "25 credits"]
-    },
-    "civilian":{
-	"name":"Civilian",
-	"items":["Secure clothing (AC 13)", "Compad", "700 credits"]
-    },
-    "technician":{
-	"name":"Technician",
-	"items": ["Laser pistol (1d6 damage)", "Armored undersuit (AC 13)", "Monoblade knife (1d6 damage)", "Postech toolkit", "6 units of spare parts", "4 type A cells", "Backpack (TL0)", "Dataslab", "Metatool", "200 credits"]
+    "mage_healer_scholar":{
+	"name":"Mage, Healer, or Scholar",
+	"items":["Daggers, 2 (1d4 dmg, Shock 1/AC 15)","Staff (1d6 dmg, Shock 1/AC 13)","Backpack","Lantern, tinder box, and 2 pint flasks of oil","Writing kit & 20 sheets of paper","Rations, 1 week","Waterskin","Healer’s pouch","80 silver pieces in cash"]
     }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>   
     <meta charset="UTF-8">
-    <title>Character Creator</title>
+    <title>WWN Character Creator</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Play&family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/37eb526597.js" crossorigin="anonymous"></script>
@@ -35,7 +35,7 @@
   </head>
   <body>
     <div id="header" class="header">
-      <img src="assets/sky-star-atmosphere-constellation-aviation-space-1262201-pxhere.com_cropped.jpg" alt="nebula" class="headerbackground">
+      <img src="assets/shutterstock_256025320_cropped.jpg" alt="" class="headerbackground">
       <img src="assets/title.png" alt="nebula" class="headertext">
     </div>
     <div class="bodyGrid">
@@ -61,12 +61,13 @@
 	      <select id="class_mirror" onchange="updateFromMirrors(this.id);updateStatus4();updateStatus5();">
 		<option value=""></option>
 		<option value="expert">Expert</option>
-		<option value="psychic">Psychic</option>
+		<option value="mage">Mage</option>
 		<option value="warrior">Warrior</option>	    
 		<option value="adventurer" class="adventurerOption" disabled>Adventurer:</option>
-		<option value="exp_psy">&nbsp;&nbsp;&nbsp;&nbsp;Expert/Psychic</option>
-		<option value="war_exp">&nbsp;&nbsp;&nbsp;&nbsp;Expert/Warrior</option>
-		<option value="war_psy">&nbsp;&nbsp;&nbsp;&nbsp;Psychic/Warrior</option>
+		<option value="exp_mag">&nbsp;&nbsp;&nbsp;&nbsp;Expert/Mage</option>
+		<option value="exp_war">&nbsp;&nbsp;&nbsp;&nbsp;Expert/Warrior</option>
+		<option value="mag_mag">&nbsp;&nbsp;&nbsp;&nbsp;Mage/Mage</option>
+		<option value="mag_war">&nbsp;&nbsp;&nbsp;&nbsp;Mage/Warrior</option>
 	      </select>
 	    </div>
 	    
@@ -338,23 +339,18 @@
 	      </div>
 	      <div id="skill_bank" class="skillBank" style="grid-template-columns: fit-content(200px) 1fr;">
 		<div class="heading">Available skills:</div>
-		<div id="bank_filler"></div>
+		<div id="bank_filler">
+		</div>
 	      </div>
-	    </div>
-	    <div style="position:absolute;right:5px;bottom:12px">
-	      <span class="heading">Psionic Effort:</span> 0/<span id="effort">0</span>
+	      <div style="top:250px;right:5px;position:absolute;">
+		<span class="heading" id="effort1_heading"></span> <span id="effort1"></span><br> <span class="heading" id="effort2_heading"></span> <span id="effort2"></span>
+	      </div>
+
+
 	    </div>
 	  </div>
 	  
 	</div>      
-
-	<!-- <script> loadJSON(readURLParams); </script> -->
-	<!-- <script> loadBackgrounds(); </script> -->
-	<!-- <script> loadSkills(); </script> -->
-	<!-- <script> loadClasses(); </script> -->
-	<!-- <script> loadFoci(); </script> -->
-	<!-- <script> loadPsionics(); </script> -->
-	<!-- <script> loadPackages(); </script> -->
 
 	<br>
 	
@@ -557,16 +553,23 @@
 	      <select id="class" onchange="tabulateFoci(); displayClass(); updateSkills(); updateMirrors(this.id);updateStatus4();updateStatus5();" size="15" style="height:327px;border:1px solid black;overflow:hidden">
 		<option value="" disabled selected>Choose one</option>
 		<option value="expert">Expert</option>
-		<option value="psychic">Psychic</option>
+		<option value="mage">Mage</option>
 		<option value="warrior">Warrior</option>	    
 		<option value="adventurer" class="adventurerOption" disabled>Adventurer:</option>
-		<option value="exp_psy">&nbsp;&nbsp;&nbsp;&nbsp;Expert/Psychic</option>
-		<option value="war_exp">&nbsp;&nbsp;&nbsp;&nbsp;Expert/Warrior</option>
-		<option value="war_psy">&nbsp;&nbsp;&nbsp;&nbsp;Psychic/Warrior</option>
+		<option value="exp_mag">&nbsp;&nbsp;&nbsp;&nbsp;Expert/Mage</option>
+		<option value="exp_war">&nbsp;&nbsp;&nbsp;&nbsp;Expert/Warrior</option>
+		<option value="mag_mag">&nbsp;&nbsp;&nbsp;&nbsp;Mage/Mage</option>
+		<option value="mag_war">&nbsp;&nbsp;&nbsp;&nbsp;Mage/Warrior</option>
 	      </select>
 	      
-	      
-	      <div id="class_description" class="descriptionBox" style="height:325px">
+	      <div style="position:relative;">
+		<div id="class_description" class="descriptionBox" style="height:325px;">
+		</div>
+		<div style="position:absolute; right:0px; top:0px; background:white; width:0px; height:0px; display:inline-block; padding:0px;" id="advancementTablePane">
+		  <table style="display:none" id="advancementTable" class="advancementTable">
+		  </table>
+		  <button class="ui-button ui-widget ui-corner-all" id="expandCollapseTableButton" style="display:none; width: 159px; position:absolute; right:0px; bottom:-24px; padding:1px;margin:1px;"><i class="fas fa-caret-down"></i> Advancement Table</button>
+		</div>
 	      </div>
 	    </div>
 	    
@@ -619,57 +622,44 @@
 	  </div>
 	</div>
 	<div class="accordion">
-	  <h3>6. Choose psionic techniques <img src="assets/checkmark.png" alt="" class="statusicon" id="accordion6StatusIcon"></h3>
+	  <h3>6. Choose arcane tradition, arts, and spells <img src="assets/checkmark.png" alt="" class="statusicon" id="accordion6StatusIcon"></h3>
 	  <div>
-	    <p>Characters with Psychic class or the Partial Psychic feature of the Adventurer class gain techniques associated with the psionic disciplines in which they are proficient.</p>
-	    <p>Upon attaining rank-0 expertise in a psychic skill, your hero automatically learns the <strong>Core Technique</strong> for that discipline. The power of that technique is described under <strong>Level-0</strong>.</p>
-	    <p>Heroes that reach rank-1 expertise in a psychic skill gain the benefits listed under <strong>Level-1</strong> of its <strong>Core Technique</strong>. Additionally, characters may select a level-1 technique from that discipline as well.</p>
+	    <p> Characters of the Mage or Partial Mage class gain spells and arts dependent on their Arcane Tradition(s).</p>
 
+<div style="display:grid; grid-template-columns:140px auto;" id="traditionsPanel">
+
+	      <select id="traditions" size="15" onchange="displayTradition();" style="height:327px;border:1px solid black;overflow:hidden">
+		<option value="" disabled selected>Choose one</option>
+	      </select>
+	      
+	      <div style="position:relative;">
+		<div id="tradition_description" class="descriptionBox" style="height:325px;">
+		</div>
+		<div style="position:absolute; right:0px; top:0px; display:inline-block; padding:0px;border:1px black solid; width:0px; height:0px;" id="traditionsExpandCollapsePane">
+		  <div style="background:white; width:0px; height:0px; padding:0px;" id="spellcastingTablePane">
+		    <table style="display:none" id="spellcastingTable" class="advancementTable">
+		    </table>
+		  </div>
+		  <div style="background:white; width:0px; height:0px; padding:0px;" id="unarmedTablePane">
+		    <table style="display:none" id="unarmedTable" class="advancementTable">
+		    </table>
+		  </div>
+		  <div style="background:white; width:0px; height:0px; padding:0px;" id="artsTablePane">
+		    <table style="display:none" id="artsTable" class="advancementTable">
+		    </table>
+		  </div>
+
+		  <div style="position:absolute; right:0px; bottom:-24px;display: flex; justify-content: flex-end; width:400px;">
+		    <button class="ui-button ui-widget ui-corner-all" id="expandCollapseSpellcastingTableButton" style="display:none; width: 159px; padding:1px;margin:1px;"><i class="fas fa-caret-down"></i> Spellcasting Table</button>
+		    <button class="ui-button ui-widget ui-corner-all" id="expandCollapseUnarmedTableButton" style="width: 130px; padding:1px;margin:1px;"><i class="fas fa-caret-down"></i> Unarmed Table </button>
+		    <button class="ui-button ui-widget ui-corner-all" id="expandCollapseArtsTableButton" style="width: 90px; padding:1px;margin:1px;"><i class="fas fa-caret-down"></i> Arts Table </button>
+		  </div>
+		</div>
+	      </div>
+	    </div>
+	    
 	    <div id="psionics_tabs" style="display:none">
-	      <ul>
-		<li id="biopsionics_tab" style="display:none">
-		  <a href="#biopsionics_panel">
-		    <div style="text-align:center">
-		      Biopsionics
-		    </div>
-		  </a>
-		</li>
-		<li id="metapsionics_tab" style="display:none">
-		  <a href="#metapsionics_panel">
-		    <div style="text-align:center">
-		      Metapsionics
-		    </div>
-		  </a>
-		</li>
-		<li id="precognition_tab" style="display:none">
-		  <a href="#precognition_panel">
-		    <div style="text-align:center">
-		      Precognition
-		    </div>
-		  </a>
-		</li>
-		<li id="telekinesis_tab" style="display:none">
-		  <a href="#telekinesis_panel">
-		    <div style="text-align:center">
-		      Telekinesis
-		    </div>
-		  </a>
-		</li>
-		<li id="telepathy_tab" style="display:none">
-		  <a href="#telepathy_panel">
-		    <div style="text-align:center">
-		      Telepathy
-		    </div>
-		  </a>
-		</li>
-		<li id="teleportation_tab" style="display:none">
-		  <a href="#teleportation_panel">
-		    <div style="text-align:center">
-		      Teleportation
-		    </div>
-		  </a>
-		</li>
-	      </ul>
+
 	      
 	      <div id="biopsionics_panel">
 		<div id="biopsionics_heading" style="display:none"><h2>Biopsionics</h2></div>
@@ -769,7 +759,6 @@
 
 	    </div>
 
-	    <p id="psionics_instruction"> <i>Select psychic skills on the skill table above to gain psionic techniques.</i></p>
 
 	  </div>
 	  
@@ -820,10 +809,10 @@
 	  <h3>8. Choose equipment <img src="assets/redx.png" alt="" class="statusicon" id="accordion8StatusIcon"></h3>
 	  <div>
 	    <p>Your hero begins their adventure with some equipment and (modest) wealth.</p>
-	    <p>Choose one of the equipment packages below. Selecting the "Custom" package provides your character with  2d6 x 100 starting credits with which to buy gear.</p>
+	    <p>Choose one of the equipment packages below. Selecting the "Custom" package provides your character with  3d6 x 10 silver pieces with which to buy gear.</p>
 
 
-	    <div style="display:grid; grid-template-columns:100px auto;" id="equipmentPanel">
+	    <div style="display:grid; grid-template-columns:175px auto;" id="equipmentPanel">
 
 	      <select id="equipment_packages" onchange="displayEquipmentPackage(this.value);updateStatus8();" size="10" style="overflow:hidden;height:272px;border:1px solid black;">
 		<option value="" selected disabled>Choose one</option>

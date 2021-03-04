@@ -1,0 +1,128 @@
+{
+    "Apprehending the Arcane Form":{
+	"level":"1",
+	"description":"The mage opens up their mind to the presence of occult energies. For fifteen minutes per character level, they are capable of seeing active magical effects, curses, enchantments, or other dweomers as colored auras or patterns of light. They may identify magical items and get a one-sentence description of their purpose or most significant powers, and may get more sophisticated answers with successful Wis/Magic skill checks at difficulties of 8 or more depending on the subtlety of the enchantment. Mages with prepared spells are visible to the caster, though which spells the subject might have prepared is not knowable. As a side effect of this spell, the ambient thaumic currents cast enough quasi-light to allow the caster to see normally even in perfect darkness.",
+	"abbreviated":"See magic for 15 minutes per level, while also seeing in the dark",
+	"list":"high"
+    },
+    "Cognitive Supersession of the Inferior Orders":{
+	"level":"1",
+	"description":"The mage targets a visible, normal, non-magical animal or insect, obtaining temporary control of the beast and the ability to share its senses. The animal gains a telepathic bond with the caster, obeying any non-suicidal command and allowing the mage to perceive everything it perceives. The beast will not fight for the caster, but can perform complex actions entirely out of character for it while under the mage’s control. The mage must focus to share the beast’s senses, requiring a Main Action and leaving the mage unable to act physically while so focused. The spell lasts until the mage releases the beast, it is dispelled, or it is cast again.",
+	"abbreviated":"Telepathically bond with an animal, which obeys but won’t fight",
+	"list":"high"
+    },
+    "The Coruscating Coffin":{
+	"level":"1",
+	"description":"A thaumic discharge is focused on a single visible creature within one hundred feet per caster level, wreathing them in a lethal mantle of crackling energy. The target suffers 1d8 damage per caster level, with a Physical save for half. Targets with only 1 hit die will inevitably be slain regardless of the damage done. The spell cannot be blocked by non-magical intervening barriers, provided the caster can see the target with their unaided vision.",
+	"abbreviated":"Do 1d8 dmg/level to a visible target, save for half. 1 HD foes die.",
+	"list":"high"
+    },
+    "Damnation of the Sense":{
+	"level":"1",
+	"description":"The caster targets a visible creature within two hundred feet. The target gets a Mental saving throw to resist; on a failure, one sense of the caster’s choice is entirely under the caster’s control for the rest of the scene, while a success leaves them bound only for the next round. Any false impression may be given, or any true one concealed, and a creature may be left effectively blinded or deafened. Distracting tactile sensations can force the victim to make a Physical saving throw in order to act each round. Blinded creatures can’t make ranged attacks and roll all melee hit rolls twice, taking the worst result. If a creature thinks itself in mortal peril its excitement allows it to make a Mental save to throw off the spell at the end of each round.",
+	"abbreviated":"Take control of one sense of a target for a scene on a failed save",
+	"list":"high"
+    },
+    "Decree of Ligneous Dissolution":{
+	"level":"1",
+	"description":"Wood, linen, cotton, rope, and other plant-derived matter is annihilated by a wave of entropic force that washes through an area near the caster. The mage targets a point within one hundred feet per caster level and designates a number of 10-foot cubes within that area equal to or less than their caster level. All non-magical plant matter within that area immediately erodes away to dust. Enchanted objects of plant matter cannot be affected, but ordinary plant-based clothing, bows, or wooden-hafted weapons will be destroyed. If used against plant-based monsters, the spell does 1d10 damage per caster level, with a Physical save for half.",
+	"abbreviated":"Destroy all non-magic plant-derived matter in the target area",
+	"list":"high"
+    },
+    "The Excellent Transpicuous Transformation":{
+	"level":"1",
+	"description":"The mage chooses up to one visible willing target per caster level provided they are within 100 feet, though afterwards the targets can separate freely. The targets and all they wear or carry become perfectly transparent. Missile attacks against invisible foes are largely impossible, and melee attacks against them usually suffer a -4 penalty to hit rolls. The spell lasts for up to an hour per caster level, but it breaks if a subject performs some violent motion, such as running, attacking, or casting a spell. Once broken for one subject, it breaks for all.",
+	"abbreviated":"Turn one target per level invisible for an hour per caster level",
+	"list":"high"
+    },
+    "Imperceptible Cerebral Divulgence":{
+	"level":"1",
+	"description":"The mage focuses on a visible living creature within 100 feet per caster level. For the rest of the scene, they immediately receive an impression of the target’s surface thoughts and interests, understanding them regardless of any lack of a shared language. The caster may ask one question of the target’s memories per caster level, but doing so risks breaking the spell; the target can make a Mental save before answering each question and the spell ends if the save is successful. These questions can only query memories, not compel any exercise of judgment or extrapolation. This spell is very subtle in its casting, and can be invoked without any visible gestures or audible incantations.",
+	"abbreviated":"Detect a target’s surface thoughts and get answers to questions",
+	"list":"high"
+    },
+    "Ineluctable Shackles of Volition":{
+	"level":"1",
+	"description":"The mage targets a visible living creature within 100 feet. The subject must immediately make a Mental saving throw at a penalty equal to the caster’s Magic skill or become enthralled to the caster’s will. Such victims will obey any physical commands issued by the caster, barring ones that seem suicidal or patently meant to result in their murder. The caster cannot order the creature to answer questions or perform acts that require independent judgment, nor to use non-physical abilities or spells, but it will fight for the caster or to defend its own life. Enchanted victims appear torpid and dazed, and will act only to defend themselves or satisfy their needs. The spell lasts until dispelled, or until the caster dies or releases them. Every time this spell is cast, however, all prior subjects get an immediate unmodified Mental saving throw to throw it off. If the creature has more hit dice than the caster, it gets an unmodified saving throw to end the effect the first time each day it’s ordered to do something it finds strongly objectionable.",
+	"abbreviated":"Enslave a target’s mind, leaving them visibly dazed but obedient",
+	"list":"high"
+    },
+    "The Long Amber Moment":{
+	"level":"1",
+	"description":"This spell may be cast as an On Turn spell, provided no other has been cast this round, and targets a single willing or helpless creature the caster is touching. The subject is shifted out of the flow of conventional time, freezing and being limned in a pale sepia light. They and all their carried possessions are rendered impervious to all non-magical harm and are frozen in temporal stasis until the spell ends or is dispelled. Enchanted creatures are quite light, counting as only four items of Encumbrance due to their unwieldiness. The spell ends when the mage releases it, or up to a maximum of one day per caster level. If cast on himself, the mage cannot end it before the full duration expires.",
+	"abbreviated":"Put a willing creature into temporary invulnerable stasis",
+	"list":"high"
+    },
+    "Phantasmal Mimesis":{
+	"level":"1",
+	"description":"The mage creates a phantasmal seeming at a visible location within 100 feet per caster level. The illusion can occupy a number of 10-foot cubes equal to the caster’s level and can include visual, audible, olfactory, and even tactile elements. If onlookers have no reason to believe the illusion is false, they will unconsciously move and perceive so as to conform to its apparent physical qualities, halting before walls, reeling from imagined blows, and seeing their clothing burnt by phantasmal flames. The illusion will behave and act on its own in accordance with the caster’s intentions for it, but it cannot go more than a hundred feet from where it was conjured. Phantasmal monsters fight as if they were the caster and do no more than 1d8 damage per hit, while phantasmal perils do no more than 1d8 damage to creatures affected by them. Foes brought to zero hit points fall unconscious and wake up ten minutes later with 1 hit point. Creatures convinced the illusion is false can make a Mental saving throw each round to reject its psychic influences, becoming immune to its effects. The illusion lasts until dispelled, the caster drops it, or this spell is cast again.",
+	"abbreviated":"Create an independently-functional illusion in the target area",
+	"list":"high"
+    },
+    "Velocitous Imbuement":{
+	"level":"1",
+	"description":"Unlike most spells, this one may be cast as a simple On Turn action, targeting up to one visible willing creature per caster level within one hundred feet. Enchanted creatures become incredibly fleet of foot, doubling their usual ground movement rate and becoming capable of running up walls and across ceilings without falling, provided they end their round upright on a navigable surface. They may also move away from melee opponents without needing to make a Fighting Withdrawal to avoid a parting attack, and may pass through and around armed foes who do not completely physically block their path. The spell lasts for the remainder of the scene and adds 1 System Strain to those who take advantage of it.",
+	"abbreviated":"Augment the movement speed and options of one target/level",
+	"list":"high"
+    },
+    "Wardpact Invocation":{
+	"level":"1",
+	"description":"This spell may be cast in two different forms. If it targets a creature within 200 feet, the target becomes partially immune to physical weapons; any weapon hit on them requires the attacker make a successful Physical save or the hit is negated. This effect lasts for one round per two caster levels, rounded up, and can’t target the caster. If it targets a visible weapon within two hundred feet, that weapon is rendered entirely harmless and unable to inflict damage for the rest of the scene, with no saving throw. The spell may only affect a given target or weapon once per scene and natural body weapons aren’t affected.",
+	"abbreviated":"Make a target partially weapon-immune or make a weapon useless",
+	"list":"high"
+    },
+    "The Wind of the Final Repose":{
+	"level":"1",
+	"description":"The mage designates a visible point within two hundred feet. A silent, invisible burst of soporific influence erupts from that point, targeting all living creatures within a twenty-foot radius. All such targets with 4 or fewer hit dice within that area fall unconscious instantly, and can be roused only by damage or by a Main Action used to kick them awake. If not roused, they revive at the end of the scene. Entities that do not sleep are immune to this spell.",
+	"abbreviated":"Put living targets of 4 HD or less to sleep within the area of effect",
+	"list":"high"
+    },
+    "Aqueous Harmony":{
+	"level":"1",
+	"description":"The elementalist and up to a dozen allies are charmed with powers of water-breathing, a tolerance for the pressure and cold of the deeps, and the ability to see through water as if it were well-lit air. Ensorceled beings may move freely while in the water at their usual movement rate and their attacks and projectile weapons are not hindered by the medium, nor are their possessions soaked or damaged. The spell lasts for one hour per caster level, but will not naturally end so long as a subject is still at least partially submerged. Only the caster or magical dispelling can stop it under those circumstances.",
+	"abbreviated":"",
+	"list":"ele"
+    },
+    "Elemental Favor":{
+	"level":"1",
+	"description":"",
+	"abbreviated":"The elementalist makes a direct appeal to a non-magical mass of earth, stone, water, flame, or air no larger than a ten-foot cube. At the end of the round, the mass will move or reshape itself within that space as the elementalist requests, maintaining its new form until the end of the scene. If its new shape is one that is stable without magical help, it can be told to remain in it after the spell is finished.",
+	"list":"ele"
+    },
+    "Elemental Spy":{
+	"level":"1",
+	"description":"The elementalist enchants a stone, ounce of liquid, flame no smaller than a candleflame, or a particular plume of smoke or incense. For one day per level, so long as the charmed object is not destroyed, dispersed, or consumed, they can as a Main Action see and listen to anything around the object as if they were standing there.",
+	"abbreviated":"",
+	"list":"ele"
+    },
+    "Flame Scrying":{
+	"level":"1",
+	"description":"The elementalist becomes aware of the approximate locations of all open flames within thirty feet per caster level. They may choose one of those flames as a focus for the scrying, allowing them to see and hear everything around the flame as if they were present. The spell’s duration lasts for as long as the elementalist remains motionlessly focused on it; during this duration, they may switch their focus between the various flames in range as they wish.",
+	"abbreviated":"",
+	"list":"ele"
+    },
+    "Command the Dead":{
+	"level":"1",
+	"description":"The necromancer exerts their will over a number of hit dice worth of undead equal to twice their character level. These undead must be visible and within one hundred feet of the caster. Undead get a Mental saving throw to resist this binding, at a penalty equal to the caster’s Magic skill. Creatures only partially-bewitched by the spell due to their excess hit dice merely stand dazed for a round. Those fully within the hit die cap who are affected become suicidally loyal to the necromancer until they are released by the caster. Regardless of how often the caster uses this spell, they may have no more than twice their level worth of hit dice bound at any one time, with the oldest-enchanted being first released.",
+	"abbreviated":"",
+	"list":"necro"
+    },
+    "Query the Skull":{
+	"level":"1",
+	"description":"This spell requires a corpse with largely-intact organs of communication. The corpse cannot have been dead for more than one day per caster level. Once sorceled, the corpse will answer up to one question per caster level, with the caster understanding the answers regardless of the creature’s natural language. Corpses are laconic, and generally answer in no more than one or two sentences; their replies will be truthful, but tend to be literal and they have no power to hypothesize or make judgments. This spell may not be used twice on the same corpse.",
+	"abbreviated":"",
+	"list":"necro"
+    },
+    "Smite the Dead":{
+	"level":"1",
+	"description":"The necromancer conjures a blast of dispelling force at a point within one hundred feet per caster level, affecting an area up to 20 feet in radius. All hostile undead within that area immediately suffer 1d10 damage per caster level. Undead with hit dice equal or less than the caster’s level must make a Physical save or be destroyed outright. The necromancer may Commit Effort for the day immediately after casting this spell to restore it to their mind for use again.",
+	"abbreviated":"",
+	"list":"necro"
+    },
+    "Terrible Liveliness":{
+	"level":"1",
+	"description":"A necromancer can give an undead creature the semblence of a healthy, normal living being with this spell. The target appears as it did in life, at any point in its lifespan that the necromancer so desires, and is capable of performing all normal human activities that its cognition allows it to perform. The spell uses the creature’s nature as a template for its effects, so the disguise is tangible and physically real until dispelled or the necromancer drops the effect. A necromancer can maintain only one such disguise per level, and it does not work on sentient unwilling targets.",
+	"abbreviated":"",
+	"list":"necro"
+    }
+}

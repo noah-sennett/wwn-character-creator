@@ -9,20 +9,40 @@
 	"level1abbreviated":"Notice +1. You cannot be surprised, nor can others use the Execution Attack option on you. When you roll initiative, roll twice and take the best result.",
 	"level2abbreviated":"You always act first in a combat round unless someone else involved is also this Alert."
     },
-    "armsman":{
-	"name":"Armsman",
-	"description":"You have an unusual competence with thrown weapons and melee attacks. This focus’ benefits do not apply to unarmed attacks or projectile weapons. For thrown weapons, you can’t use the benefits of the Armsman focus at the same time as Gunslinger.",
+    "armored_magic":{
+	"name":"Armored Magic",
+	"description":"Usable only by Mage heroes who would otherwise be prevented from casting spells or using arts while armored, this Focus reflects special training in channeling magic through the obdurate and hindering materials of conventional armor.",
+	"level1":"You can cast spells or use arts while wearing armor that has an Encumbrance value of no more than two. You can use a shield while casting, provided your other hand is empty for gesturing.",
+	"level2":"You can cast spells while wearing armor of any Encumbrance. You’ve also learned to cast spells while both your hands are full, though not bound.",
+	"skill":"",
+	"type":"both",
+	"level1abbreviated":"You can cast spells or use arts while wearing armor of Encumberance less than 2. You can use a shield while casting if your other hand is empty.",
+	"level2abbreviated":"You can cast spells while wearing any armor. You can cast spells while both hands are full, though not bound."
+    },
+    "armsmaster":{
+	"name":"Armsmaster",
+	"description":"You have an unusual competence with thrown weapons and melee attacks. This focus’ benefits do not apply to unarmed attacks or non-thrown projectile weapons. This Focus' bonuses don't stack with Deadeye or other Foci that add a skill's level to your damage or Shock.",
 	"level1":"Gain Stab as a bonus skill. You can draw or sheath a Stowed melee or thrown weapon as an Instant action. You may add your Stab skill level to a melee or thrown weapon’s damage roll or Shock damage, assuming it has any to begin with.",
-	"level2":"Your primitive melee and thrown weapons count as TL4 weapons for the purpose of overcoming advanced armors. Even on a miss with a melee weapon, you do an unmodified 1d4 damage to the target, plus any Shock damage. This bonus damage doesn’t apply to thrown weapons or attacks that use the Punch skill.",
+	"level2":"The Shock from your melee attacks always treats the target as if they have AC 10. Gain a +1 bonus to hit with all thrown or melee attacks.",
 	"skill":"stab",
 	"type":"combat",
 	"level1abbreviated":"Stab +1. Draw or sheath a Stowed melee or thrown weapon as an Instant action. Add your Stab skill level to a melee or thrown weapon’s damage roll or Shock damage.",
-	"level2abbreviated":"Primitive melee and thrown weapons count as TL4 weapons. You do an unmodified 1d4 damage + Shock damage on a miss (this doesn’t apply to thrown weapons or Punch attacks)."
+	"level2abbreviated":"Treat all targets as AC 10 for purposes of Shock damage. Gain a +1 bonus to hit with all thrown or melee attacks."
+    },
+    "artisan":{
+	"name":"Artisan",
+	"description":"You have considerable gifts as a crafter and know numerous secrets for employing arcane salvage and magical materials. You are able to create mods for equipment even if you are not an Expert, as per the rules on page XX.",
+	"level1":"Gain Craft as a bonus skill. Your Craft skill is treated as one level higher, up to a maximum of 5, for purposes of crafting and maintaining mods. Mods you build require one fewer unit of arcane salvage, down to a minimum of one.",
+	"level2":"The first mod you add to an item requires no Maintenance and only half the silver piece cost usually required. This benefit is in addition to the benefits of installing a mod in masterwork gear you build. You automatically succeed at any attempt to build masterwork gear appropriate to your background or past practice, and once per month you can reduce a created mod’s salvage cost by one further unit, down to a minimum of zero.",
+	"skill":"craft",
+	"type":"noncombat",
+	"level1abbreviated":"Craft +1. Your Craft skill is treated as one level higher for crafting and maintaining mods and calculation Maintenance score. Mods require one fewer arcane salvage.",
+	"level2abbreviated":"The first mod you add to an item requires no Maintenance and half the silver cost. Once per month, you can reduce a mod's cost by one fewer arcane salvage."
     },
     "assassin":{
 	"name":"Assassin",
-	"description":"You are practiced at sudden murder, and have certain advantages in carrying out an Execution Attack as described in the rules on page 52.",
-	"level1":"Gain Sneak as a bonus skill. You can conceal an object no larger than a knife or pistol from anything less invasive than a strip search, including normal TL4 weapon detection devices. You can draw or produce this object as an On Turn action, and your point-blank ranged attacks made from surprise with it cannot miss the target.",
+	"description":"You are practiced at sudden murder, and have certain advantages in carrying out an Execution Attack as described in the rules on page XX.",
+	"level1":"Gain Sneak as a bonus skill. You can conceal an object no larger than a knife from anything less invasive than a strip search. You can draw or produce this object as an On Turn action, and your point-blank ranged attacks made from surprise with it cannot miss the target.",
 	"level2":"You can take a Move action on the same round as you make an Execution Attack, closing rapidly with a target before you attack. You may split this Move action when making an Execution Attack, taking part of it before you murder your target and part of it afterwards. This movement happens too quickly to alert a victim or to be hindered by bodyguards, barring an actual physical wall of meat between you and your prey.",
 	"skill":"sneak",
 	"type":"combat",
@@ -31,8 +51,8 @@
     },
     "authority":{
 	"name":"Authority",
-	"description":"You have an uncanny kind of charisma about you, one that makes others instinctively follow your instructions and further your causes. At level 1, this is a knack of charm and personal magnetism, while level 2 might suggest latent telepathic influence or transhuman memetic hacking augmentations. Where this focus refers to followers, it means NPCs who have voluntarily chosen to be in your service. PCs never count as followers.",
-	"level1":"Gain Lead as a bonus skill. Once per day, you can make a request from an NPC who is not openly hostile to you, rolling a Cha/Lead skill check at a difficulty of the NPC’s Morale score. If you succeed, they will comply with the request, provided it is not harmful or extremely uncharacteristic.",
+	"description":"You have an uncanny kind of charisma about you, one that makes others instinctively follow your instructions and further your causes. At level 1, this is a knack of charm and personal magnetism, while level 2 might suggest latent magical powers. Where this focus refers to followers, it means NPCs who have voluntarily chosen to be in your service. PCs never count as followers.",
+	"level1":"Gain Lead as a bonus skill. Once per day, you can make a request from an NPC who is not openly hostile to you, rolling a Cha/Lead skill check at a difficulty of the NPC’s Morale score. If you succeed, they will comply with the request, provided it is not significantly harmful or extremely uncharacteristic.",
 	"level2":"Those who follow you are fired with confidence. Any NPC being directly led by you gains a Morale and hit roll bonus equal to your Lead skill and a +1 bonus on all skill checks. Your followers will not act against your interests unless under extreme pressure.",
 	"skill":"lead",
 	"type":"noncombat",
@@ -41,8 +61,8 @@
     },
     "close_combatant":{
 	"name":"Close Combatant",
-	"description":"You’ve had all too much practice at close-in fighting and desperate struggles with pistol or blade. You’re extremely skilled at avoiding injury in melee combat, and at level 2 you can dodge through a melee scrum without fear of being knifed in passing.",
-	"level1":"Gain any combat skill as a bonus skill. You can use pistol-sized ranged weapons in melee without suffering penalties for the proximity of melee attackers. You ignore Shock damage from melee assailants, even if you’re unarmored at the time.",
+	"description":"You’ve had all too much practice at close-in fighting and desperate struggles with drawn blades. You’re extremely skilled at avoiding injury in melee combat, and at level 2 you can dodge through a melee scrum without fear of being knifed in passing.",
+	"level1":"Gain any combat skill as a bonus skill. You can use knife-sized thrown weapons in melee without suffering penalties for the proximity of melee attackers. You ignore Shock damage from melee assailants, even if you’re unarmored at the time, but invoking this benefit disrupts any spellcasting you might do that round due to the need for violently active evasion.",
 	"level2":"The Shock damage from your melee attacks treats all targets as if they were AC 10. The Fighting Withdrawal combat action is treated as an On Turn action for you and can be performed freely.",
 	"skill":"any combat",
 	"type":"combat",
@@ -59,111 +79,171 @@
 	"level1abbreviated":"Connect +1. If you've spent a week in a location, you can call on one favor per game day from web of contacts.",
 	"level2abbreviated":"Once per game session, you meet an acquaintance willing to do modest favors for you."
     },
+    "cultured":{
+	"name":"Cultured",
+	"description":"Through wide travel, careful observation, or extensive study, you’ve obtained a wide experience of the cultures of your region and an ability to navigate their customs, laws, and languages. You know what to do and say to impress others with the reasonableness of your wishes.",
+	"level1":"Gain Connect as a bonus skill. You can speak all the common languages of your native region and convey at least basic information in the uncommon or esoteric ones. You can learn a new language with only a week’s practice with a native speaker. Once per game day, your polished ways automatically gain a modest favor from an NPC that would not put them to significant expense or risk, assuming the NPC isn’t hostile to you.",
+	"level2":"Once per game session, reroll a failed social skill check as you use your cultural knowledge to push your interlocutor toward the desired result.",
+	"skill":"connect",
+	"type":"noncombat",
+	"level1abbreviated":"Connect +1. You know all languages of your native region. You ask a modest favor once per game day from non-hostile NPC.",
+	"level2abbreviated":"Once per game session, reroll a failed social skill check."
+    },
     "die_hard":{
 	"name":"Die Hard",
 	"description":"You are surprisingly hard to kill. You can survive injuries or bear up under stresses that would incapacitate a less determined hero.",
 	"level1":"You gain an extra 2 maximum hit points per level. This bonus applies retroactively if you take this focus after first level. You automatically stabilize if mortally wounded by anything smaller than a Heavy weapon.",
-	"level2":"The first time each day that you are reduced to zero hit points by an injury, you instead survive with one hit point remaining. This ability can’t save you from Heavy weapons or similar trauma.",
+	"level2":"The first time each day that you are reduced to zero hit points by an injury, you instead survive with one hit point remaining. This ability can’t save you from large-scale, instantly-lethal trauma.",
 	"skill":"",
 	"type":"both",
 	"level1abbreviated":"+2 HP per level. You automatically stabilize if mortally wounded by anything less than Heavy weapons.",
 	"level2abbreviated":"The first time each day you are reduced to 0 HP by anything less than Heavy weapons, you instead survive at 1 HP."
     },
+    "deadeye":{
+	"name":"Deadeye",
+	"description":"You have a gift with ranged weapons. While this talent most commonly applies to bows, it is also applicable to thrown weapons or other ranged weapons that can be used with the Shoot skill. For thrown weapons, you can’t use the benefits of the Armsmaster focus at the same time as Deadeye.",
+	"level1":"Gain Shoot as a bonus skill. You can draw or ready a Stowed ranged weapon as an On Turn action. You may use a bow or two-handed ranged weapon even when an enemy is within melee range, albeit at a -4 hit penalty. You may add your Shoot skill level to a ranged weapon’s damage roll.",
+	"level2":"Once per round, you can reload a crossbow or other slow-loading ranged weapon as an On Turn action if it takes no more than one round to reload. Gain a +1 bonus to hit on all ranged attacks",
+	"skill":"shoot",
+	"type":"combat",
+	"level1abbreviated":"Shoot +1. Draw or ready a ranged weapon as an On Turn action. Add your Shoot skill level to ranged weapon damage rolls. Bows can be used in melee with a -4 hit penalty.",
+	"level2abbreviated":"Once per round, reload a slow-loading ranged weapon as an On Turn action instead of Main action. Gain +1 bonus to hit on all ranged attacks."
+    },
+    "dealmaker":{
+	"name":"Dealmaker",
+	"description":"You have an uncanny ability to sniff out traders and find good deals, licit or otherwise. Even those who might not normally be disposed to bargain with you can sometimes be persuaded to pause and negotiate, if you have something they want.",
+	"level1":"Gain Trade as a bonus skill. With a half hour of effort you can find a buyer or seller for any good or service that can be traded in the community, legal or otherwise. Finding a marginally possible service, like an assassin willing and able to target a king, or some specific precious ancient artifact, may require an adventure if the GM allows it at all.",
+	"level2":"Once per session, target a sentient who is not just then trying to kill you or your allies and make a request of it that it can comprehend. If it’s at all plausible for it to make such terms, it will do so for a price or favor it thinks you can grant, though the price for significant favors might be dear.",
+	"skill":"trade",
+	"type":"noncombat",
+	"level1abbreviated":"Trade +1. You can find a buyer or seller for any good or service that can be traded in the community, legal or otherwise.",
+	"level2abbreviated":"Once per game session, make a request of an NPC not trying to kill you; if it's plausible, it will offer terms for the request."
+    },
+    "developed_attribute":{
+	"name":"Developed Attribute",
+	"description":"Your hero has a remarkable degree of development to one or more of their attributes. This may be derived from an eldritch bloodline, native brilliance, or sheer, stubborn determination. This Focus cannot be taken by heroes with the Mage or Partial Mage classes.",
+	"level1":"Choose an attribute; its modifier is increased by +1, up to a maximum of +3. The actual score does not change, but the modifier increases, and may increase again if later advancement improves the attribute enough. You can choose this Focus more than once to improve different attributes.",
+	"level2":"",
+	"skill":"",
+	"type":"both",
+	"level1abbreviated":"Increase the modifier for an attribute by +1 (up to a maximum of +3).",
+	"level2abbreviated":"Once per game session, shift an NPC's reaction roll one step closer to friendly if you talk to them for 30 seconds."
+    },
     "diplomat":{
 	"name":"Diplomat",
 	"description":"You know how to get your way in personal negotiations, and can manipulate the attitudes of those around you. Even so, while smooth words are versatile, they’ll only work if your interlocutor is actually willing to listen to you.",
-	"level1":"Gain Talk as a bonus skill. You speak all the languages common to the sector and can learn new ones to a workable level in a week, becoming fluent in a month. Reroll 1s on any skill check dice related to negotiation or diplomacy.",
+	"level1":"Gain Convince as a bonus skill. You speak all the languages common to your region of the world and can learn new ones to a workable level in a week, becoming fluent in a month. Reroll 1s on any skill check dice related to negotiation or diplomacy.",
 	"level2":"Once per game session, shift an intelligent NPC’s reaction roll one step closer to friendly if you can talk to them for at least thirty seconds.",
-	"skill":"talk",
+	"skill":"convince",
 	"type":"noncombat",
-	"level1abbreviated":"Talk +1. You speak all languages common to the sector and learn new ones in a week (fluent in month). Reroll 1s on checks related to diplomacy.",
+	"level1abbreviated":"Talk +1. You speak all languages common to the region and learn new ones in a week (fluent in month). Reroll 1s on checks related to diplomacy.",
 	"level2abbreviated":"Once per game session, shift an NPC's reaction roll one step closer to friendly if you talk to them for 30 seconds."
     },
-    "gunslinger":{
-	"name":"Gunslinger",
-	"description":"You have a gift with a gun. While this talent most commonly applies to slugthrowers or energy weapons, it is also applicable to thrown weapons, bows, or other ranged weapons that can be used with the Shoot skill. For thrown weapons, you can’t use the benefits of the Armsman focus at the same time as Gunslinger.",
-	"level1":"Gain Shoot as a bonus skill. You can draw or holster a Stowed ranged weapon as an On Turn action. You may add your Shoot skill level to a ranged weapon’s damage roll.",
-	"level2":"Once per round, you can reload a ranged weapon as an On Turn action if it takes no more than one round to reload. Even on a miss with a Shoot attack, you do an unmodified 1d4 damage",
-	"skill":"shoot",
-	"type":"combat",
-	"level1abbreviated":"Shoot +1. Draw or holster a stowed ranged weapon as an On Turn action. Add your Shoot skill level to ranged weapon damage rolls.",
-	"level2abbreviated":"Once per round, reload a ranged weapon as an On Turn action instead of Main action. You deal an unmodified 1d4 damage on missed Shoot attacks."
-    },
-    "hacker":{
-	"name":"Hacker",
-	"description":"You have a considerable fluency with digital security measures and standard encryption methods. You know how to make computerized systems obey you until their automatic failsafes come down on your control.",
-	"level1":"Gain Program as a bonus skill. When attempting to hack a database or computerized system, roll 3d6 on the skill check and drop the lowest die.",
-	"level2":"Your hack duration increases to 1d4+Program skill x 10 minutes. You have an instinctive understanding of the tech; you never need to learn the data protocols for a strange system and are always treated as familiar with it",
-	"skill":"program",
-	"type":"noncombat",
-	"level1abbreviated":"Program +1. Roll 3d6 and drop lowest die on skill checks to hack a computerized system.",
-	"level2abbreviated":"Hack duration increases to 1d4+Program skill x 10 minutes. You are always treated as familiar with new data protocols."
-    },
-    "healer":{
-	"name":"Healer",
-	"description":"Healing comes naturally to you, and you’re particularly gifted at preventing the quick bleed-out of wounded allies and comrades.",
-	"level1":"Gain Heal as a bonus skill. You may attempt to stabilize one mortally-wounded adjacent person per round as an On Turn action. When rolling Heal skill checks, roll 3d6 and drop the lowest die.",
-	"level2":"Stims or other technological healing devices applied by you heal twice as many hit points as normal. Using only basic medical supplies, you can heal 1d6+Heal skill hit points of damage to every injured or wounded person in your group with ten minutes of first aid spread among them. Such healing can be applied to a given target only once per day.",
+    "gifted_chirurgeon":{
+	"name":"Gifted Chirurgeon",
+	"description":"You have an unusual gift for saving mortally-wounded allies and quickening the natural recovery of the wounded in your care.",
+	"level1":"Gain Heal as a bonus skill. You may attempt to stabilize one Mortally Wounded adjacent person per round as an On Turn action. When rolling Heal skill checks, roll 3d6 and drop the lowest die. You heal twice as many hit points as usual when applying first aid after a battle, as described on page XX.",
+	"level2":"Your curative gifts are little short of magical. You can heal 1d6+Heal skill in damage to an adjacent wounded ally as a Main Action. Each such application of healing adds 1 System Strain to the target, and the gift cannot be used on targets already at their maximum System Strain.",
 	"skill":"heal",
 	"type":"both",
-	"level1abbreviated":"Heal +1. You may stabilize one person per round as an On Turn action. Roll 3d6 and drop lowest die on Heal skill checks.",
-	"level2abbreviated":"Stims/healing devices you apply heal twice as many HP as normal. You can heal 1d6+Heal skill HP to a party in 10 minutes (once per day per target)."
+	"level1abbreviated":"Heal +1. Stabilize one person per round as an On Turn action. Roll 3d6 and drop lowest die on Heal skill checks. Heal twice as many HP as normal with first aid.",
+	"level2abbreviated":"You can heal 1d6+Heal skill to a wounded ally as a Main Action. Each application adds 1 System Strain to the target."
     },
     "henchkeeper":{
 	"name":"Henchkeeper",
 	"description":"You have an distinct knack for picking up lost souls who willingly do your bidding. You might induce them with promises of money, power, excitement, sex, or some other prize that you may or may not eventually grant. A henchman obtained with this focus will serve in loyal fashion until clearly betrayed or placed in unacceptable danger. Henchmen are not “important” people in their society, and are usually marginal sorts, outcasts, the desperate, or other persons with few options.<br><br> You can use more conventional pay or inducements to acquire additional henchmen, but these extra hirelings are no more loyal or competent than your pay and treatment can purchase.",
-	"level1":"Gain Lead as a bonus skill. You can acquire henchmen within 24 hours of arriving in a community, assuming anyone is suitable hench material. These henchmen will not fight except to save their own lives, but will escort you on adventures and risk great danger to help you. Most henchmen will be treated as Peaceful Humans from the Xenobestiary section of the book. You can have one henchmen at a time for every three character levels you have, rounded up. You can release henchmen with no hard feelings at any plausible time and pick them back up later should you be without a current henchman.",
-	"level2":"Your henchmen are remarkably loyal and determined, and will fight for you against anything but clearly overwhelming odds. Whether through natural competence or their devotion to you, they’re treated as Martial Humans from the Xenobestiary section. You can make faithful henchmen out of skilled and highly-capable NPCs, but this requires that you actually have done them some favor or help that would reasonably earn such fierce loyalty.",
+	"level1":"Gain Lead as a bonus skill. You can acquire henchmen within 24 hours of arriving in a community, assuming anyone is suitable hench material. These henchmen will not fight except to save their own lives, but will escort you on adventures and risk great danger to help you. Most henchmen will be treated as Peaceful Humans from the Bestiary section of the book. You can have one henchmen at a time for every three character levels you have, rounded up. You can release henchmen with no hard feelings at any plausible time and pick them back up later should you be without a current henchman.",
+	"level2":"Your henchmen are remarkably loyal and determined, and will fight for you against anything but clearly overwhelming odds. Whether through natural competence or their devotion to you, they’re treated as Martial Humans from the Bestiary section. You can make faithful henchmen out of skilled and highly-capable NPCs, but this requires that you actually have done them some favor or help that would reasonably earn such fierce loyalty.",
 	"skill":"lead",
 	"type":"noncombat",
 	"level1abbreviated":"Lead +1. You can acquire henchmen within 24 hours and can keep 1 henchmen per 3 character levels (rounded up) at a time. Henchmen are treated as Peaceful Humans",
 	"level2abbreviated":"Your henchmen are treated as Martial Humans. You can make henchmen of skilled NPCs if you have helped them previously."
     },
-    "ironhide":{
-	"name":"Ironhide",
-	"description":"Whether through uncanny reflexes, remarkable luck, gengineered skin fibers, or subtle telekinetic shielding, you have natural defenses equivalent to high-quality combat armor. The benefits of this focus don’t stack with armor, though Dexterity or shield modifiers apply.",
+    "impervious_defense":{
+	"name":"Impervious Defense",
+	"description":"Whether through uncanny reflexes, remarkable luck, supernatural heritage, or magical talent, you have natural defenses equivalent to high-quality armor. The benefits of this focus don’t stack with armor, though Dexterity or shield modifiers apply.",
 	"level1":"You have an innate Armor Class of 15 plus half your character level, rounded up.",
-	"level2":"Your abilities are so effective that they render you immune to unarmed attacks or primitive weaponry as if you wore powered armor.",
+	"level2":"Once per day, as an Instant action, you can shrug off any single weapon attack or physical trauma inflicted by a foe. Environmental damage, falling damage, or other harm that couldn’t be forfended by strong armor cannot be resisted this way.",
 	"skill":"",
 	"type":"both",
 	"level1abbreviated":"You have an innate Armor Class of 15 plus half your character level, rounded up.",
-	"level2abbrevited":"You are immune to unarmed attacks or primitive weaponry as if you wore powered armor."
+	"level2abbreviated":"Once per day, as an Instant action, shrug off a single attack or physical trauma inflicted by a foe."
     },
-    "psychic_training":{
-	"name":"Psychic Training",
-	"description":"You’ve had special training in a particular psychic discipline. You must be a Psychic or have taken the Partial Psychic class option as an Adventurer to pick this focus. In the latter case, you can only take training in the discipline you initially chose as a Partial Psychic. As with most foci, this focus can be taken only once.",
-	"level1":"Gain any psychic skill as a bonus. If this improves it to level-1 proficiency, choose a free level-1 technique from that discipline. Your maximum Effort increases by one.",
-	"level2":"When you advance a level, the bonus psychic skill you chose for the first level of the focus automatically gets one skill point put toward increasing it or purchasing a technique from it. You may save these points for later, if more are required to raise the skill or buy a particular technique. These points are awarded retroactively if you take this focus level later in the game.",
-	"skill":"any psychic",
+    "imposter":{
+	"name":"Imposter",
+	"description":"You are exceedingly skilled at presenting yourself as something you are not, including disguises, voice mimicry, and lightning-fast wardrobe changes. Some impostors rely on the acting skills of Perform, while others lean more to the nefarious tricks of Sneak.",
+	"level1":"Gain Perform or Sneak as a bonus skill. Once per scene, reroll any failed skill check or saving throw related to maintaining an imposture or disguise. Create one false identity of no great social importance; you can flawlessly pretend to be that person, such that only extremely persuasive proof can connect you with it. You can change this identity with a week’s worth of effort in building a new one.",
+	"level2":"You can alter your clothing and armor such that a single Main Action lets you swap between any of three chosen appearances. In addition to your original false identity, you can establish a new false identity in each city or significant community you spend at least a week in.",
+	"skill":"perform or sneak",
+	"type":"noncombat",
+	"level1abbreviated":"Perform or Sneak +1. Once per scene, reroll a failed roll to maintain an imposture or disguise. Create a false identity with a week's effort.",
+	"level2abbreviated":"Swap between 3 chosen appearances with a Main Action. You can establish a false identity (in addition to your original one) in each place you spend a week."
+    },
+    "lucky":{
+	"name":"Lucky",
+	"description":"Some fund of remarkable luck has preserved your life at least once in the past, and continues to give you an edge in otherwise hopeless situations. This luck does not favor the already-blessed; this Focus can only be taken by a PC with at least one attribute modifier of -1 or less.",
+	"level1":"Once per week, a blow or effect that would otherwise have killed, mortally wounded, or rendered helpless the PC somehow fails to connect or affect them. The PC makes any rolls related to games of chance twice, taking the better roll.",
+	"level2":"Once per session, in a situation of need or peril, the PC can trust to their luck and roll 1d6. On a 2 or more, something fortunate will happen to further their goal, provide an escape from immediate peril, or otherwise give them an advantage they need, if not immediate victory. On a 1, the situation will immediately grow much worse, as the GM sees fit.",
+	"skill":"",
 	"type":"both",
-	"level1abbreviated":"Any psychic +1. If this improves it to level-1 proficiency, gain a level-1 technique. Your maximum Effort increases by 1.",
-	"level2abbreviated":"When you advance a level, gain one skill point usable only towards discipline you choose with the level 1 focus. These points are awarded retroactively, too."
+	"level1abbreviated":"Once per week, an otherwise incapacitating blow or effect somehow fails to connect or affect you. Make rolls related to games of chance twice, taking the better roll.",
+	"level2abbreviated":"Once per session, in a situation of need or peril you can roll 1d6. On a 2 or more, something fortunate helps you. On a 1, the situation grows much worse. "
     },
-    "savage_fray":{
-	"name":"Savage Fray",
-	"description":"You are a whirlwind of bloody havoc in melee combat, and can survive being surrounded far better than most combatants.",
-	"level1":"Gain Stab as a bonus skill. All enemies adjacent to you at the end of your turn whom you have not attacked suffer the Shock damage of your weapon if their Armor Class is not too high to be affected.",
-	"level2":"After suffering your first melee hit in a round, any further melee attacks from other assailants automatically miss you. If the attacker who hits you has multiple attacks, they may attempt all of them, but other foes around you simply miss.",
-	"skill":"stab",
-	"type":"combat",
-	"level1abbreviated":"Stab +1. All adjacent enemies that you have not attacked take Shock damage of your weapon at the end of your turn, if their AC is not too high to be affected.",
-	"level2abbreviated":"After you suffer a melee hit, all other enemies' melee attacks miss you for the remainder of the round."
+    "nullifier":{
+	"name":"Nullifier",
+	"description":"Something about your hero interferes with easy use of magic on them. It may be a strangely powerful birth blessing, a particular supernatural bloodline, or simple occult incompatibility. This Focus cannot be taken by Mages or Partial Mages.",
+	"level1":"You and all allies within twenty feet gain a +2 bonus to all saving throws against magical effects. You can feel the presence or use of magic within twenty feet of you, though you can’t discern details about it or the specific source. The first failed saving throw against a magical effect you suffer in a day is turned into a success.",
+	"level2":"Once per day, as an Instant action, you are simply not affected by an unwanted magical effect, even if it wouldn’t normally allow a saving throw.",
+	"skill":"",
+	"type":"both",
+	"level1abbreviated":"You and allies within 20' gain +2 bonus to saving throws against magical effects. You feel the presence of magic within 20'. Each day, the first time you would fail a saving throw against magic, you succeed instead.",
+	"level2abbreviated":"Once per day, as an Instant action, you are simply not affected by an unwanted magical effect, even if it wouldn’t normally allow a saving throw."
+    },
+    "poisoner":{
+	"name":"Poisoner",
+	"description":"You are a skilled poisoner, capable of compounding toxins out of readily-available flora and minerals. It takes an hour to brew a poison, and you can keep as many doses fresh as you have levels. Blade venoms take a Main Action to apply and last for ten minutes or until a hit or Shock is inflicted, whichever comes first. Detecting poisoned food is a Wis/Notice skill check against 10, or 12 if they’re not suspicious. One dose can poison up to a half-dozen diners.",
+	"level1":"Gain Heal as a bonus skill. Gain a reroll on any failed saving throw versus poison. Your toxins inflict 2d6 damage plus your level on a hit or Shock, with a Physical save for half. Your incapacitating or hallucinogenic toxins do the same, but those reduced to zero hit points are simply incapacitated for an hour.",
+	"level2":"You are immune to poison and can apply a universal antidote to any poisoned ally as a Main Action. Any attempt to detect or save against your poisons takes a penalty equal to your Heal skill. Your ingested poisons count as an Execution Attack against unsuspecting targets, as per page XX, with Heal used for the Physical saving throw penalty. Such poisons can be non-lethal at your discretion.",
+	"skill":"heal",
+	"type":"noncombat",
+	"level1abbreviated":"Heal +1. You can reroll any failed saving throw against poison. Your toxins inflict 2d6 + your level on a hit or Shock (Physical save for half). Your non-lethal toxins do the same, but those reduced to 0 HP are simply incapicated for an hour.",
+	"level2abbreviated":"You are immune to poison and can cure any ally of poison as a Main Action. Attempts to detect or save against your poisons take a penalty equal to your Heal skill. Your ingested poisons count as Execution Attacks with Heal used for the saving throw penalty but can be non-letahl at your discretion."
+    },
+    "polymath":{
+	"name":"Polymath",
+	"description":"You have a passing acquaintance with a vast variety of practical skills and pastimes. Note that the phantom skill levels granted by this Focus don’t stack with normal skill levels or give a skill purchase discount.",
+	"level1":"Gain any one bonus skill. You never take the -1 penalty for attempting a skill check untrained, and you can attempt even those skills that would be impossible for an untutored person to essay. You never suffer the -2 hit penalty for lacking an appropriate combat skill.",
+	"level2":"Once per day, you can remember some trick relevant to the task you are attempting, allowing you to roll a check as if you had level-2 skill in it.",
+	"skill":"any skill",
+	"type":"both",
+	"level1abbreviated":"Any Skill +1. Ignore the normal -1 penalty on untrained skill checks and the -2 penalty on untrained attack rolls.",
+	"level2abbreviated":"Once per day, remember some trick relevant to a task at hand, allowing a check as if you had level-2 rank in the appropriate skill."
+    },
+    "rider":{
+	"name":"Rider",
+	"description":"Anyone with any level of Ride skill can fight competently on horseback or keep their mount healthy. You have an almost supernatural bond with your steeds, however, and can push them beyond normal limits.",
+	"level1":"Gain Ride as a bonus skill. Your steeds all count as Morale 12 in battle, use your AC if it’s higher than theirs, and can travel 50% further in a day than normal for their kind. You can intuitively communicate with riding beasts, gaining as much information from it as its intellect can convey.",
+	"level2":"Once per scene, negate a successful attack against your steed as an Instant action. Once per scene, reroll any failed Ride skill check. You can telepathically send and receive simple warnings, thoughts, and commands to and from your steed so long as it’s within two hundred feet. You can so bond with one steed at a time, taking an hour to do so.",
+	"skill":"ride",
+	"type":"both",
+	"level1abbreviated":"Ride +1. Your steed has Morale 12 in battle, uses your AC (if it's higher), and can travel 50% further in a day than normal. You can communicate with riding beasts within the liits of their intellect.",
+	"level2abbreviated":"Once per scene, negate a successful attack against your steed as an Instant Action. Once per scene, reroll any failed Ride check. You can telepathically communicate with a specially bonded steed within 200'."
     },
     "shocking_assault":{
 	"name":"Shocking Assault",
 	"description":"You’re extremely dangerous to enemies around you. The ferocity of your melee attacks stresses and distracts enemies even when your blows don’t draw blood.",
-	"level1":"Gain Punch or Stab as a bonus skill. The Shock damage of your weapon treats all targets as if they were AC 10, assuming your weapon is capable of harming the target in the first place.",
-	"level2":"In addition, you gain a +2 bonus to the Shock damage rating of all melee weapons and unarmed attacks. Regular hits never do less damage than this Shock would do on a miss.",
+	"level1":"Gain Punch or Stab as a bonus skill. The Shock damage of your weapon treats all targets as if they were AC 10, assuming your weapon is capable of harming the target in the first place and the target is not immune to Shock.",
+	"level2":"In addition, you gain a +2 bonus to the Shock damage rating of all melee weapons and unarmed attacks. As usual, regular hits never do less damage than this Shock would do on a miss.",
 	"skill":"punch or stab",
 	"type":"combat",
 	"level1abbreviated":"Punch or Stab +1. Deal Shock damage as if all targets were AC 10.",
-	"level2abbreviated":"Deal +2 Shock damage with melee and unarmed attacks. Regular hits never do less damage than this Shock would do on a miss."
+	"level2abbreviated":"Deal +2 Shock damage with melee and unarmed attacks. As usual, regular hits never do less damage than this Shock would do on a miss."
     },
     "sniper":{
 	"name":"Sniper",
-	"description":"You are an expert at placing a bullet or beam on an unsuspecting target. These special benefits only apply when making an Execution Attack with a firearm or bow, as described on page 52.",
-	"level1":"Gain Shoot as a bonus skill. When making a skill check for an Execution Attack or target shooting, roll 3d6 and drop the lowest die.", 
-	"level2":"A target hit by your Execution Attack takes a -4 penalty on the Physical saving throw to avoid immediate mortal injury. Even if the save is successful, the target takes double the normal damage inflicted by the attack.",
+	"description":"You are an expert at placing a thrown knife or arrow on an unsuspecting target. These special benefits only apply when making an Execution Attack with a firearm or bow, as described on page 52.",
+	"level1":"Gain Shoot as a bonus skill. When making a skill check for a ranged Execution Attack or target shooting, roll 3d6 and drop the lowest die.", 
+	"level2":"A target hit by your ranged Execution Attack takes a -4 penalty on the Physical saving throw to avoid immediate mortal injury. Even if the save is successful, the target takes double the normal damage inflicted by the attack.",
 	"skill":"shoot",
 	"type":"combat",
 	"level1abbreviated":"Shoot +1. When making an Execution Attack or target shooting, roll 3d6 and drop the lowest die.",
@@ -171,58 +251,47 @@
     },
     "specialist":{
 	"name":"Specialist",
-	"description":"You are remarkably talented at a particular skill. Whether a marvelous cat burglar, a world-famous athlete, a brilliant engineer, or some other savant, your expertise is extremely reliable. You may take this focus more than once for different skills.",
-	"level1":"Gain a non-combat, non-psychic skill as a bonus. Roll 3d6 and drop the lowest die for all skill checks in this skill.",
+	"description":"You are remarkably talented at a particular skill. Whether a marvelous cat burglar, a famed athlete, a brilliant scholar, or some other savant, your expertise is extremely reliable. You may take this focus more than once for different skills.",
+	"level1":"Gain any skill as a bonus, except for Magic, Stab, Shoot, or Punch. Roll 3d6 and drop the lowest die for all skill checks in this skill.",
 	"level2":"Roll 4d6 and drop the two lowest dice for all skill checks in this skill.",
 	"skill":"any noncombat",
 	"type":"noncombat",
 	"level1abbreviated":"+1 any non-combat, non-psychic skill.  Roll 3d6 and drop the lowest die for all skill checks in this skill.",
 	"level2abbreviated":"Roll 4d6 and drop the two lowest dice for all skill checks in this skill."
     },
-    "star_captain":{
-	"name":"Star Captain",
-	"description":"You have a tremendous natural talent for ship combat, and can make any starship you captain a significantly more fearsome opponent. You must take the captain’s role during a fight as described on page 117 of the Ship Combat rules in order to benefit from this focus.",
-	"level1":"Gain Lead as a bonus skill. Your ship gains 2 extra Command Points at the start of each turn.",
-	"level2":"A ship you captain gains bonus hit points equal to 20% of its maximum at the start of each combat. Damage is taken from these bonus points first, and they vanish at the end of the fight and do not require repairs to replenish before the next. In addition, once per engagement, you may resolve a Crisis as an Instant action by explaining how your leadership resolves the problem.",
-	"skill":"lead",
-	"type":"combat",
-	"level1abbreviated":"Lead +1. Your ship gains 2 extra Command Points at the start of each turn.",
-	"level2abbreviated":"Ships you captain gain bonus HP equal to 20% of maximum at the start of each combat. Once per engagement, you may resolve a Crisis as an Instant action."
-	
-    },
-    "starfarer":{
-	"name":"Starfarer",
-	"description":"You are an expert in the plotting and execution of interstellar spike drills. While most experienced pilots can manage conventional drills along well-charted spike routes, you have the knack for forging new drill paths and cutting courses too dangerous for lesser navigators.",
-	"level1":"Gain Pilot as a bonus skill. You automatically succeed at all spike drill-related skill checks of difficulty 10 or less.",
-	"level2":"Double your Pilot skill for all spike drill-related skill checks. Spike drives of ships you navigate are treated as one level higher; thus, a drive-1 is treated as a drive-2, up to a maximum of drive-7. Spike drills you personally oversee take only half the time they would otherwise require.",
-	"skill":"pilot",
+    "spirit_familiar":{
+	"name":"Spirit Familiar",
+	"description":"You have a minor spirit, devil, construct, magical beast, or other creature as a devoted companion. While its abilities are limited, it is absolutely loyal to you.",
+	"level1":"Choose a form for your familiar no smaller than a raven nor larger than a human. It has the statistics and abilities of an entity created by Calculation of the Evoked Servitor on page XX, but may be summoned or dismissed as a Main Action, appearing within melee range of its owner. It has no need for food, water, or sleep. If killed, it vanishes and cannot be re-summoned for 24 hours.",
+	"level2":"Pick two benefits from this list for your familiar: A) it has hit points equal to three times your character level, B) it gains the ability to attack with a hit bonus equal to half your level, rounded up, and doing 1d8 damage on a hit with no Shock, C) it gains a +1 skill check bonus and can apply it to a range of situations equivalent to one normal human background, D) it can adopt a normal-seeming human shape as an On Turn action, E) it adds one point to an Effort pool of your choice when summoned, or F) it can communicate freely in any language you know. This level may be taken more than once, adding two additional options each time.",
+	"skill":"",
 	"type":"noncombat",
-	"level1abbreviated":"Pilot +1. You automatically succeed spike drill-related skill checks of DC 10 or less.",
-	"level2abbreviated":"Double your Pilot skill for spike drill-related skill checks. Spike drives of ships you navigate are treated as one level higher. Spike drills you oversee take half normal time."
+	"level1abbreviated":"Choose a form of your familiar between raven- and human-size. You can summon or dismiss your familiar as a Main Action; if killed, it vanishes and cannot be re-summoned for 24 hours.",
+	"level2abbreviated":"Enhance your familiar with 2 of the benefits listed on page 26. Each time you take this level, add 2 more benefits."	
     },
-    "tinker":{
-	"name":"Tinker",
-	"description":"You have a natural knack for modifying and improving equipment, as given in the rules on page 100.",
-	"level1":"Gain Fix as a bonus skill. Your Maintenance score is doubled, allowing you to maintain twice as many mods. Both ship and gear mods cost only half their usual price in credits, though pretech salvage requirements remain the same.",
-	"level2":"Your Fix skill is treated as one level higher for purposes of building and maintaining mods and calculating your Maintenance score. Advanced mods require one fewer pretech salvage part to make, down to a minimum of zero.",
-	"skill":"fix",
+    "trapmaster":{
+	"name":"Trapmaster",
+	"description":"You have uncommon expertise in handling traps and snares, both mundane ones and the magical perils sometimes found in Deeps or the lairs of sorcerers. You know how to quickly improvise traps with materials you commonly carry.",
+	"level1":"Gain Notice as a bonus skill. Once per scene, reroll any failed saving throw or skill check related to traps or snares. Given five minutes of work you can trap a portal, container, passageway, or other relatively narrow space with foot snares, caltrops, toxic needles, or other hazards. Non-lethal traps cause the first victim to trigger it to lose a round of actions while dangerous ones inflict 1d6 damage plus twice the character’s level, with an appropriate saving throw for half. Only one such improvised trap can be maintained at a time. More fearsome traps may be laid with congenial circumstances and the GM’s permission.",
+	"level2":"You know secrets for unraveling even magical traps or arcane hazards that would normally require a wizard to dispel them. Once per scene, your efforts count as an Extirpate Arcana spell against the trap or hazard, cast at twice your level, with any relevant skill check being Int/Notice or Dex/Notice.",
+	"skill":"notice",
 	"type":"noncombat",
-	"level1abbreviated":"Fix +1. Double your Maintenance score. Ship and gear mods cost half their usual credit price.",
-	"level2abbreviated":"Your Fix skill is treated as one level higher for building and maintaining mods and calculation Maintenance score. Advanced mods require one fewer pretech salvage."
+	"level1abbreviated":"Notice +1. Once per scene, reroll a failed saving throw or skill check related to traps. You can set a trap with 5 minutes work; non-lethal traps cause the first victim to trigger it to lose a round of actions while dangerous ones deal 1d6+twice the character's level in damage (appropriate save for half).",
+	"level2abbreviated":"Once per scene, you can disarm magical traps/hazards as if by Extirpate Arcana spell, cast at twice your level, with any relevant skill check being Int/Notice or Dex/Notice."
     },
     "unarmed_combatant":{
 	"name":"Unarmed Combatant",
-	"description":"Your empty hands are more dangerous than knives and guns in the grip of the less gifted. Your unarmed attacks are counted as melee weapons when it comes to binding up opponents wielding rifles and similar long arms, though you need at least one hand free to do so.",
+	"description":"Your empty hands are more dangerous than swords in the grip of the less gifted. Your unarmed attacks are counted as melee weapons when it comes to binding up opponents wielding bows and similar ranged long arms, though you need at least one hand free to do so.",
 	"level1":"Gain Punch as a bonus skill. Your unarmed attacks become more dangerous as your Punch skill increases. At level-0, they do 1d6 damage. At level-1, they do 1d8 damage. At level-2 they do 1d10, level-3 does 1d12, and level-4 does 1d12+1. At Punch-1 or better, they have the Shock quality equal to your Punch skill against AC 15 or less. While you normally add your Punch skill level to any unarmed damage, don’t add it twice to this Shock damage.",
-	"level2":"You know locks and twists that use powered servos against their wearer. Your unarmed attacks count as TL4 weapons for the purpose of overcoming advanced armors. Even on a miss with a Punch attack, you do an unmodified 1d6 damage.",
+	"level2":"Even on a miss with a Punch attack, you do an unmodified 1d6 damage, plus any Shock that blow might inflict on the target.",
 	"skill":"punch",
 	"type":"combat",
 	"level1abbreviated":"Punch +1. Unarmed attacks do 1d6 damage at Punch-0, 1d8 at Punch-1, 1d10 at Punch-2, 1d12 at Punch-3, and 1d12+1 at Punch-4. At Punch-1+ they have Shock quality equal to Punch skill against AC 15 or less.",
-	"level2abbreviated":"Unarmed attacks count as TL4 weapons to overcome armor. Even on a miss, Punch attacks deal an unmodified 1d6 damage"
+	"level2abbreviated":"Even on a miss, Punch attacks deal an unmodified 1d6 damage plus any Shock it might inflict."
     },
     "unique_gift":{
 	"name":"Unique Gift",
-	"description":"Whether due to exotic technological augmentation, a unique transhuman background, or a remarkable human talent, you have the ability to do something that’s simply impossible for a normal human.<br><br> This is a special focus which serves as a catch-all for some novel power or background perk that doesn’t have a convenient fit in the existing rules. A transhuman who can function normally in lethal environments, a nanotech-laden experimental subject with a head full of exotic sensors, or a brilliant gravitic scientist who can fly thanks to their personal tech might all take this focus to cover their special abilities.<br><br> It’s up to the GM to decide what’s reasonable and fair to be covered under this gift. If an ability is particularly powerful, it might require the user to take System Strain to use it, as described on page 32.<br><br> As a general rule this ability should be better than a piece of gear the PC could buy for credits. The player is spending a very limited resource when they make this focus pick, so what they get should be good enough that they can’t just duplicate it with a fat bank account.",
+	"description":"Your hero has some unusual ability or magical knack that can’t be adequately described by an existing Focus. This choice is a catch-all meant to represent a special power that’s in some way worth a Focus pick.<br><br>    The exact effect of the ability should be defined by the player and the GM together, working out some result that seems fair and reasonable. This will vary from table to table and from campaign to campaign; an innate ability to breathe water is little more than a novelty in a desert setting, while a campaign based on piracy in an endless archipelago might make it far more significant.<br><br>    As with any power, the group should be willing to reconsider the gift if it turns out to be exceptionally weak in play or a stronger power than was anticipated.",
 	"level1":"",
 	"level2":"",
 	"skill":"",
@@ -230,24 +299,34 @@
 	"level1abbreviated":"",
 	"level2abbreviated":""
     },
-    "wanderer":{
-	"name":"Wanderer",
-	"description":"Your hero gets around. As part of a life on the road, they’ve mastered a number of tricks for ensuring their mobility and surviving the inevitable difficulties of a vagabond existence.",
-	"level1":"Gain Survive as a bonus skill. You can convey basic ideas in all the common languages of the sector. You can always find free transport to a desired destination for yourself and a small group of your friends provided any traffic goes to the place. Finding this transport takes no more than an hour, but it may not be a strictly legitimate means of travel and may require working passage.",
-	"level2":"You can forge, scrounge, or snag travel papers and identification for the party with 1d6 hours of work. These papers and permits will stand up to ordinary scrutiny, but require an opposed Int/Administer versus Wis/Notice check if examined by an official while the PC is actually wanted by the state for some crime. When finding transport for the party, the transportation always makes the trip at least as fast as a dedicated charter would.",
-	"skill":"survive",
-	"type":"noncombat",
-	"level1abbreviated":"Survive +1. You can convey basics ideas in all common languages and can always find free transport for you and a small group.",
-	"level2abbreviated":"Forge/obtain travel papers for the party in 1d6 hours that stand up to normal scrutiny. If wanted criminals, make a Int/Administer vs. Wis/Notice to fool an official. Transportation found for the party is at least as fast as a dedicated charter."
+    "valiant_defender":{
+	"name":"Valiant Defender",
+	"description":"You are a bodyguard, shieldbearer, or other gifted defender of others, accustomed to the roil of bloody battle and desperate struggle.",
+	"level1":"Gain Stab or Punch as a bonus skill. Gain a +2 on all skill checks for the Screen Ally combat action. You can screen against one more attacker per round than your skill would normally allow.",
+	"level2":"The first Screen Ally skill check you make in a round is always successful. Gain +2 AC while screening someone. You can screen against foes as large as ogres or oxen.",
+	"skill":"punch or stab",
+	"type":"combat",
+	"level1abbreviated":"Punch or Stab +1. Gain +2 on checks for the Screen Ally combat action. You can screen against one more attacker per round than your skill would normally allow.",
+	"level2abbreviated":"The first Screen Ally skill check you make each round is always successful. Gain +2 AC while screening. You can screen against foes as large as ogres or oxen."
     },
-    "wild_psychic_talent":{
-	"name":"Wild Psychic Talent",
-	"description":"Some men and women are born with a very limited form of MES, the mental condition that allows for the use of psychic powers. While these people are not true psychics, these “wild talents” can create one limited psychic effect. Training is not always required to develop this ability, and their MES is so mild that they don’t suffer the risk of madness or brain damage that more developed psychics risk should they use their powers without proper training.<br><br> Wild talents are not treated as psychics for general purposes and cannot “torch” their powers. When relevant, they are treated as having one point of Effort. Psychics and Partial Psychics cannot take this focus.",
-	"level1":"Pick a psychic discipline. You gain an ability equivalent to the level-0 core power of that discipline. Optionally, you may instead pick a level-1 technique from that discipline, but that technique must stand alone; you can’t pick one that augments another technique or core ability. For example, you could pick the Telekinetic Armory technique from Telekinesis, because that ability does not require the use of any other Telekinesis power. You could not pick the Mastered Succor ability from Biopsionics, because that technique is meant to augment another power you don’t have.",
-	"level2":"You now have a maximum Effort of two points. You may pick a second ability according to the guidelines above. This second does not need to be a stand-alone technique if it augments the power you chose for level 1 of this focus. Thus, if your first pick was gaining the level-0 power of Psychic Succor, your second could be Mastered Succor. You still could not get the level-1 core power of Psychic Succor, however, as you’re still restricted to level-0.",
-	"skill":"any psychic",
-	"type":"both",
-	"level1abbreviated":"You gain an ability equivalent to a level-0 core power or standalone level-1 technique in a psychic discipline. You are treated as having 1 point of Effort.",
-	"level2abbreviated":"You gain another ability as before, but this does not need to be a standalone technique if it augments the power chosen for level 1 of this focus. You are treated as having 2 points of Effort."
+    "wayfinder":{
+	"name":"Wayfinder",
+	"description":"You have an astonishing sense of direction and spatial intuition, one that never leads you astray.",
+	"level1":"You are always aware of your location and the direction of north, assuming north exists in your context. You never become lost and can always find your way back to a place you have been. You can always find your way to any city or place that you have some form of directions to. If you are teleported against your will, you don’t know your location until you can find a landmark you recognize.",
+	"level2":"Your acuity allows you to ignore difficult terrain, moving through debris and climbing at your full movement rate. You maintain a perfect mental map of your known surroundings, one sufficient to navigate them blind. When traveling overland, your group’s movement rate is 50% faster than normal.",
+	"skill":"",
+	"type":"noncombat",
+	"level1abbreviated":"You always know the direction of north, can never become lost, and can always find your way back to a place you've been. You can find your way to any place given directions.",
+	"level2abbreviated":"You move through difficult terrain and climb at your full movement rate. You maintain a perfect mental map of your surroundings, sufficient to navigate blind. Your group moves 50% faster than normal when traveling overland."
+    },
+    "whirlwind_assault":{
+	"name":"Whirlwind Assault",
+	"description":"You are a frenzy of bloody havoc in melee combat, and can hack down numerous lesser foes in close combat... assuming you survive being surrounded.",
+	"level1":"Gain Stab as a bonus skill. Once per scene, as an On Turn action, apply your Shock damage to all foes within melee range, assuming they’re susceptible to your Shock.",
+	"level2":"The first time you kill someone in a round with a normal attack, either with its rolled damage on a hit or with the Shock damage it inflicts, instantly gain a second attack on any target within range using any Ready weapon you have.",
+	"skill":"stab",
+	"type":"combat",
+	"level1abbreviated":"Stab +1. All adjacent enemies that you have not attacked take Shock damage of your weapon at the end of your turn, if their AC is not too high to be affected.",
+	"level2abbreviated":"After you suffer a melee hit, all other enemies' melee attacks miss you for the remainder of the round."
     }
 }
